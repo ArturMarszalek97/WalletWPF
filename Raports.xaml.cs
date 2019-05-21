@@ -23,6 +23,32 @@ namespace WalletWPF
         public Raports()
         {
             InitializeComponent();
+
+            Raportss raportss = new Raportss("test");
+            List<Raportss> raportsses = new List<Raportss>();
+
+            raportsses.Add(raportss);
+            bloki.ItemsSource = raportsses;
+            //bloki.DataContext = new RaportsViewModel(raportss);
         }
+
+        internal class Raportss
+        {
+            public string name { get; set; }
+            public int count { get; set; }
+
+            public Raportss(string name)
+            {
+                this.name = name;
+                count = rnd();
+            }
+
+            private int rnd()
+            {
+                Random random = new Random();
+                return random.Next(0, 100);
+            }
+        }
+
     }
 }

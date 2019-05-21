@@ -18,6 +18,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <Grid Grid.Column="0">
@@ -90,6 +91,18 @@
                     <TextBlock Text="Stan na dzień: 21.05.2019" FontSize="8" Foreground="Gray"/>
                 </StackPanel>
             </Grid>
+        </Grid>
+
+        <Grid Grid.ColumnSpan="3" Grid.Row="1">
+            <MetroChart:StackedColumn100Chart >
+                <MetroChart:StackedColumn100Chart.Series>
+                    <MetroChart:ChartSeries DisplayMember="name"
+                                            Name="bloki" 
+                                            ItemsSource="{Binding count}"
+                                            SeriesTitle="{Binding name}"
+                                            ValueMember="Count" />
+                </MetroChart:StackedColumn100Chart.Series>
+            </MetroChart:StackedColumn100Chart>
         </Grid>
     </Grid>
 </Page>

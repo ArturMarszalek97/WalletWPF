@@ -24,5 +24,10 @@ namespace WalletWPF
         {
             InitializeComponent();
         }
+
+        private void AddConstOrder(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

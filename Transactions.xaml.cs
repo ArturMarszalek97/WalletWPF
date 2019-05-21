@@ -24,5 +24,11 @@ namespace WalletWPF
         {
             InitializeComponent();
         }
+
+        private void addtransactions(object sender, RoutedEventArgs e)
+        {
+            AddTransaction addTransaction = new AddTransaction();
+            addTransaction.Show();
+        }
     }
 }
