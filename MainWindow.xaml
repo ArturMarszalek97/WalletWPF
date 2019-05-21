@@ -126,28 +126,28 @@
 
             <StackPanel Grid.Row="1">
                 <Button Name="MainPage" Margin="10" Background="#FF8522BD" BorderBrush="#FF8522BD" Height="40" Click="MainPage_Click">
-                    <Grid Width="150">
-                        <materialDesign:PackIcon Kind="ViewDashboard" Foreground="White" VerticalAlignment="Center"/>
-                        <TextBlock HorizontalAlignment="Center" Foreground="White" FontWeight="Bold" Text="STRONA GŁÓWNA" FontFamily="Champagne &amp; Limousines"/>
+                    <Grid Width="160">
+                        <materialDesign:PackIcon Kind="ViewDashboard"  Foreground="White" VerticalAlignment="Center"/>
+                        <TextBlock HorizontalAlignment="Center" Foreground="White" FontWeight="Bold" Text="  STRONA GŁÓWNA" FontFamily="Champagne &amp; Limousines"/>
                     </Grid>
                 </Button>
                 
                 <Button Margin="10" Background="#FF8522BD" BorderBrush="#FF8522BD" Height="40" Click="Button_Click">
-                    <Grid Width="150">
+                    <Grid Width="160">
                         <materialDesign:PackIcon Kind="ViewDashboard" Foreground="White" VerticalAlignment="Center"/>
                         <TextBlock HorizontalAlignment="Center" Foreground="White" FontWeight="Bold" Text="RAPORTY" FontFamily="Champagne &amp; Limousines"/>
                     </Grid>
                 </Button>
 
                 <Button Name="Transactions" Margin="10" Height="40" Background="#FF8522BD" BorderBrush="#FF8522BD" Click="Transactions_Click">
-                    <Grid Width="150">
-                        <materialDesign:PackIcon Kind="Account" Foreground="White" VerticalAlignment="Center"/>
+                    <Grid Width="160">
+                        <materialDesign:PackIcon Kind="BankTransfer" Foreground="White" VerticalAlignment="Center"/>
                         <TextBlock HorizontalAlignment="Center" Foreground="White" FontWeight="Bold" Text="TRANSAKCJE" FontFamily="Champagne &amp; Limousines"/>
                     </Grid>
                 </Button>
 
                 <Button Name="Orders" Margin="10" Height="40" Background="#FF8522BD" BorderBrush="#FF8522BD" Click="Orders_Click">
-                    <Grid Width="150">
+                    <Grid Width="160">
                         <materialDesign:PackIcon Kind="ContentPaste" Foreground="White" VerticalAlignment="Center"/>
                         <TextBlock HorizontalAlignment="Center" Foreground="White" FontWeight="Bold" Text="ZLECENIA STAŁE" FontFamily="Champagne &amp; Limousines"/>
                     </Grid>
@@ -155,21 +155,21 @@
 
                 <Button Name="Commitment" Margin="10" Height="40" Background="#FF8522BD" BorderBrush="#FF8522BD" Click="Commitment_Click">
                     <Grid Width="150">
-                        <materialDesign:PackIcon Kind="TshirtCrew" Foreground="White" VerticalAlignment="Center"/>
-                        <TextBlock HorizontalAlignment="Center" Foreground="White" FontWeight="Bold" Text="ZOBOWIĄZANIA" FontFamily="Champagne &amp; Limousines"/>
+                        <materialDesign:PackIcon Kind="Payment" Foreground="White" VerticalAlignment="Center"/>
+                        <TextBlock HorizontalAlignment="Center" Foreground="White" FontWeight="Bold" Text="   ZOBOWIĄZANIA" FontFamily="Champagne &amp; Limousines"/>
                     </Grid>
                 </Button>
 
                 <Button Name="Payments" Margin="10" Height="40" Background="#FF8522BD" BorderBrush="#FF8522BD" Click="Payments_Click">
-                    <Grid Width="150">
-                        <materialDesign:PackIcon Kind="TruckDelivery" Foreground="White" VerticalAlignment="Center"/>
-                        <TextBlock HorizontalAlignment="Center" Foreground="White" FontWeight="Bold" Text="FORMY PŁATNOŚCI" FontFamily="Champagne &amp; Limousines"/>
+                    <Grid Width="160">
+                        <materialDesign:PackIcon Kind="PaymentSettings" Foreground="White" VerticalAlignment="Center"/>
+                        <TextBlock HorizontalAlignment="Center" Foreground="White" FontWeight="Bold" Text="  FORMY PŁATNOŚCI" FontFamily="Champagne &amp; Limousines"/>
                     </Grid>
                 </Button>
 
                 <Button Name="Currencys" Margin="10" Height="40" Background="#FF8522BD" BorderBrush="#FF8522BD" Click="Currencys_Click">
-                    <Grid Width="150">
-                        <materialDesign:PackIcon Kind="Settings" Foreground="White" VerticalAlignment="Center"/>
+                    <Grid Width="160">
+                        <materialDesign:PackIcon Kind="AlternatingCurrent" Foreground="White" VerticalAlignment="Center"/>
                         <TextBlock HorizontalAlignment="Center" Foreground="White" FontWeight="Bold" Text="WALUTY" FontFamily="Champagne &amp; Limousines"/>
                     </Grid>
                 </Button>

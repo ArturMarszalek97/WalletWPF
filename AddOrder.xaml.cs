@@ -10,25 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace WalletWPF
 {
     /// <summary>
-    /// Interaction logic for Commitment.xaml
+    /// Interaction logic for AddOrder.xaml
     /// </summary>
-    public partial class Commitment : Page
+    public partial class AddOrder : Window
     {
-        public Commitment()
+        public AddOrder()
         {
             InitializeComponent();
-        }
-
-        private void AddObligation(object sender, RoutedEventArgs e)
-        {
-            AddCommitment addCommitment = new AddCommitment();
-            addCommitment.Show();
         }
     }
 }

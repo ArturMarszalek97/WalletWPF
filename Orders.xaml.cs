@@ -27,7 +27,8 @@ namespace WalletWPF
 
         private void AddConstOrder(object sender, RoutedEventArgs e)
         {
-
+            AddOrder addOrder = new AddOrder();
+            addOrder.Show();
         }
     }
 }
