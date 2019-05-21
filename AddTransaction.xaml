@@ -1,0 +1,45 @@
+﻿<Window x:Class="WalletWPF.AddTransaction"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:WalletWPF"
+        mc:Ignorable="d"
+        Title="AddTransaction" Height="350" Width="450">
+    <Grid Margin="10" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="30"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="10" Text="Notatka"/>
+        <TextBox Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Margin="10"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="10" Text="Kategoria"/>
+        <ComboBox Grid.Row="1" Grid.Column="1" Margin="10">
+            <ComboBoxItem></ComboBoxItem>
+            <ComboBoxItem></ComboBoxItem>
+            <ComboBoxItem></ComboBoxItem>
+        </ComboBox>
+        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="10" Text="Data"/>
+        <DatePicker Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Margin="10"/>
+        <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="10" Text="Forma płatności"/>
+        <ComboBox Grid.Row="3" Grid.Column="1" Margin="10">
+            <ComboBoxItem IsSelected="True">Gotówka</ComboBoxItem>
+            <ComboBoxItem>Gotówka za pobraniem</ComboBoxItem>
+            <ComboBoxItem>Przelew</ComboBoxItem>
+            <ComboBoxItem>Karta płatnicza</ComboBoxItem>
+            <ComboBoxItem>BLIK</ComboBoxItem>
+        </ComboBox>
+        <Button Grid.Row="5" Grid.Column="0" Width="70" HorizontalAlignment="Right" Margin="10">OK</Button>
+        <Button Grid.Row="5" Grid.Column="1" Width="80" HorizontalAlignment="Right" Margin="10">Anuluj</Button>
+    </Grid>
+</Window>
