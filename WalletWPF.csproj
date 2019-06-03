@@ -97,6 +97,7 @@
     <Compile Include="Currency.xaml.cs">
       <DependentUpon>Currency.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DBModels\debt.cs" />
     <Compile Include="Helpers\DBHelper.cs" />
     <Compile Include="MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
@@ -196,8 +197,6 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DBModels\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
