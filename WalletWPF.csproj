@@ -97,6 +97,7 @@
     <Compile Include="Currency.xaml.cs">
       <DependentUpon>Currency.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DBModels\account.cs" />
     <Compile Include="DBModels\debt.cs" />
     <Compile Include="DBModels\expenditure.cs" />
     <Compile Include="DBModels\income.cs" />
