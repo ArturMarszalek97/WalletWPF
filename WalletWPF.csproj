@@ -97,6 +97,15 @@
     <Compile Include="Currency.xaml.cs">
       <DependentUpon>Currency.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DBModels\Account.cs" />
+    <Compile Include="DBModels\Debt.cs" />
+    <Compile Include="DBModels\Expenditure.cs" />
+    <Compile Include="DBModels\Income.cs" />
+    <Compile Include="DBModels\Language.cs" />
+    <Compile Include="DBModels\Loan.cs" />
+    <Compile Include="DBModels\ParentCategory.cs" />
+    <Compile Include="DBModels\PermanentOrder.cs" />
+    <Compile Include="DBModels\Subcategory.cs" />
     <Compile Include="Helpers\DBHelper.cs" />
     <Compile Include="MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
