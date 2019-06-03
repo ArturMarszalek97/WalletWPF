@@ -122,6 +122,7 @@
     <Compile Include="Transactions.xaml.cs">
       <DependentUpon>Transactions.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\ExpenditureVM.cs" />
     <Compile Include="ViewModels\LoanVM.cs" />
     <Compile Include="ViewModels\ParentCategoryVM.cs" />
     <Compile Include="ViewModels\PermanentOrderVM.cs" />
