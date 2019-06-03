@@ -125,6 +125,7 @@
     <Compile Include="ViewModels\AccountVM.cs" />
     <Compile Include="ViewModels\DebtVM.cs" />
     <Compile Include="ViewModels\ExpenditureVM.cs" />
+    <Compile Include="ViewModels\IncomeVM.cs" />
     <Compile Include="ViewModels\LoanVM.cs" />
     <Compile Include="ViewModels\ParentCategoryVM.cs" />
     <Compile Include="ViewModels\PermanentOrderVM.cs" />
