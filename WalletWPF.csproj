@@ -100,6 +100,7 @@
     <Compile Include="DBModels\debt.cs" />
     <Compile Include="DBModels\expenditure.cs" />
     <Compile Include="DBModels\income.cs" />
+    <Compile Include="DBModels\language.cs" />
     <Compile Include="DBModels\loan.cs" />
     <Compile Include="DBModels\parent_category.cs" />
     <Compile Include="DBModels\permanent_order.cs" />
