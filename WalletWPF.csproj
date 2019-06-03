@@ -103,6 +103,7 @@
     <Compile Include="DBModels\loan.cs" />
     <Compile Include="DBModels\parent_category.cs" />
     <Compile Include="DBModels\permanent_order.cs" />
+    <Compile Include="DBModels\subcategory.cs" />
     <Compile Include="Helpers\DBHelper.cs" />
     <Compile Include="MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
