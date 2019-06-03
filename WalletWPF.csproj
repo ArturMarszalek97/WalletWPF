@@ -122,6 +122,7 @@
     <Compile Include="Transactions.xaml.cs">
       <DependentUpon>Transactions.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\PermanentOrderVM.cs" />
     <Compile Include="ViewModels\SubcategoryVM.cs" />
     <Page Include="AddCommitment.xaml">
       <SubType>Designer</SubType>
