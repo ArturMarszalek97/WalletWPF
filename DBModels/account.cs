@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WalletWPF.DBModels
 {
-    public class account
+    public class Account // wallet in database
     {
         public string wallet_name { get; set; }
         public int? id_wallet { get; set; }

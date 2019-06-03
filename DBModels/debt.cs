@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WalletWPF.DBModels
 {
-    public class debt
+    public class Debt
     {
         public string name { get; set; }
         public string comment { get; set; }

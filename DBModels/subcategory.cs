@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WalletWPF.DBModels
 {
-    public class subcategory
+    public class Subcategory
     {
         public string name { get; set; }
         public int? id_subcategory { get; set; }

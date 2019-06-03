@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WalletWPF.DBModels
 {
-    public class language
+    public class Language // tongue in database
     {
         public string name { get; set; }
         public int? id_tongue { get; set; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WalletWPF.DBModels
 {
-    public class permanent_order
+    public class PermanentOrder // permanent_order in database
     {
         public string name { get; set; }
         public string comment { get; set; }
