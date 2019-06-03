@@ -98,6 +98,7 @@
       <DependentUpon>Currency.xaml</DependentUpon>
     </Compile>
     <Compile Include="DBModels\debt.cs" />
+    <Compile Include="DBModels\expenditure.cs" />
     <Compile Include="Helpers\DBHelper.cs" />
     <Compile Include="MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
