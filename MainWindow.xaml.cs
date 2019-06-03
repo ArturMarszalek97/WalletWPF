@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WalletWPF.Helpers;
 
 namespace WalletWPF
 {
@@ -23,6 +24,7 @@ namespace WalletWPF
         public MainWindow()
         {
             InitializeComponent();
+            DBHelper.EstablishConnection();
 
             Main.Content = new MainView();
             Consumo consumo = new Consumo();
