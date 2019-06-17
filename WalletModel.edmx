@@ -1,0 +1,419 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="walletdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="id_category" />
+          </Key>
+          <Property Name="id_category" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="text" />
+        </EntityType>
+        <EntityType Name="Cubcategory">
+          <Key>
+            <PropertyRef Name="id_subcategory" />
+          </Key>
+          <Property Name="id_subcategory" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="text" />
+          <Property Name="id_category" Type="int" />
+        </EntityType>
+        <EntityType Name="Language">
+          <Key>
+            <PropertyRef Name="id_language" />
+          </Key>
+          <Property Name="id_language" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="text" />
+        </EntityType>
+        <EntityType Name="PaymentMethod">
+          <Key>
+            <PropertyRef Name="id_payment_method" />
+          </Key>
+          <Property Name="id_payment_method" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="text" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Transaction">
+          <Key>
+            <PropertyRef Name="Id_transaction" />
+          </Key>
+          <Property Name="Id_transaction" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="comment" Type="text" />
+          <Property Name="amount" Type="float" />
+          <Property Name="date" Type="date" />
+          <Property Name="id_payment_method" Type="int" />
+          <Property Name="id_subcategory" Type="int" />
+          <Property Name="transaction" Type="bit" />
+        </EntityType>
+        <Association Name="FK_Cubcategory_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Cubcategory" Type="Self.Cubcategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="id_category" />
+            </Principal>
+            <Dependent Role="Cubcategory">
+              <PropertyRef Name="id_category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaction_Cubcategory">
+          <End Role="Cubcategory" Type="Self.Cubcategory" Multiplicity="0..1" />
+          <End Role="Transaction" Type="Self.Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cubcategory">
+              <PropertyRef Name="id_subcategory" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="id_subcategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaction_PaymentMethod1">
+          <End Role="PaymentMethod" Type="Self.PaymentMethod" Multiplicity="0..1" />
+          <End Role="Transaction" Type="Self.Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentMethod">
+              <PropertyRef Name="id_payment_method" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="id_payment_method" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="walletdbModelStoreContainer">
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cubcategory" EntityType="Self.Cubcategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Language" EntityType="Self.Language" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentMethod" EntityType="Self.PaymentMethod" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Transaction" EntityType="Self.Transaction" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Cubcategory_Category" Association="Self.FK_Cubcategory_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Cubcategory" EntitySet="Cubcategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction_Cubcategory" Association="Self.FK_Transaction_Cubcategory">
+            <End Role="Cubcategory" EntitySet="Cubcategory" />
+            <End Role="Transaction" EntitySet="Transaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction_PaymentMethod1" Association="Self.FK_Transaction_PaymentMethod1">
+            <End Role="PaymentMethod" EntitySet="PaymentMethod" />
+            <End Role="Transaction" EntitySet="Transaction" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="walletdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="id_category" />
+          </Key>
+          <Property Name="id_category" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Cubcategory" Relationship="Self.FK_Cubcategory_Category" FromRole="Category" ToRole="Cubcategory" />
+        </EntityType>
+        <EntityType Name="Cubcategory">
+          <Key>
+            <PropertyRef Name="id_subcategory" />
+          </Key>
+          <Property Name="id_subcategory" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="id_category" Type="Int32" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_Cubcategory_Category" FromRole="Cubcategory" ToRole="Category" />
+          <NavigationProperty Name="Transaction" Relationship="Self.FK_Transaction_Cubcategory" FromRole="Cubcategory" ToRole="Transaction" />
+        </EntityType>
+        <EntityType Name="Language">
+          <Key>
+            <PropertyRef Name="id_language" />
+          </Key>
+          <Property Name="id_language" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="PaymentMethod">
+          <Key>
+            <PropertyRef Name="id_payment_method" />
+          </Key>
+          <Property Name="id_payment_method" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Transaction" Relationship="Self.FK_Transaction_PaymentMethod1" FromRole="PaymentMethod" ToRole="Transaction" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Transaction">
+          <Key>
+            <PropertyRef Name="Id_transaction" />
+          </Key>
+          <Property Name="Id_transaction" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="amount" Type="Double" />
+          <Property Name="date" Type="DateTime" Precision="0" />
+          <Property Name="id_payment_method" Type="Int32" />
+          <Property Name="id_subcategory" Type="Int32" />
+          <Property Name="transaction1" Type="Boolean" />
+          <NavigationProperty Name="Cubcategory" Relationship="Self.FK_Transaction_Cubcategory" FromRole="Transaction" ToRole="Cubcategory" />
+          <NavigationProperty Name="PaymentMethod" Relationship="Self.FK_Transaction_PaymentMethod1" FromRole="Transaction" ToRole="PaymentMethod" />
+        </EntityType>
+        <Association Name="FK_Cubcategory_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Cubcategory" Type="Self.Cubcategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="id_category" />
+            </Principal>
+            <Dependent Role="Cubcategory">
+              <PropertyRef Name="id_category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaction_Cubcategory">
+          <End Role="Cubcategory" Type="Self.Cubcategory" Multiplicity="0..1" />
+          <End Role="Transaction" Type="Self.Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cubcategory">
+              <PropertyRef Name="id_subcategory" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="id_subcategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaction_PaymentMethod1">
+          <End Role="PaymentMethod" Type="Self.PaymentMethod" Multiplicity="0..1" />
+          <End Role="Transaction" Type="Self.Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentMethod">
+              <PropertyRef Name="id_payment_method" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="id_payment_method" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="walletdbEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Category" EntityType="Self.Category" />
+          <EntitySet Name="Cubcategory" EntityType="Self.Cubcategory" />
+          <EntitySet Name="Language" EntityType="Self.Language" />
+          <EntitySet Name="PaymentMethod" EntityType="Self.PaymentMethod" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Transaction" EntityType="Self.Transaction" />
+          <AssociationSet Name="FK_Cubcategory_Category" Association="Self.FK_Cubcategory_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Cubcategory" EntitySet="Cubcategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction_Cubcategory" Association="Self.FK_Transaction_Cubcategory">
+            <End Role="Cubcategory" EntitySet="Cubcategory" />
+            <End Role="Transaction" EntitySet="Transaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction_PaymentMethod1" Association="Self.FK_Transaction_PaymentMethod1">
+            <End Role="PaymentMethod" EntitySet="PaymentMethod" />
+            <End Role="Transaction" EntitySet="Transaction" />
+          </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(walletdbModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(walletdbModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+        </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="walletdbModelStoreContainer" CdmEntityContainer="walletdbEntities1">
+          <EntitySetMapping Name="Category">
+            <EntityTypeMapping TypeName="walletdbModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="id_category" ColumnName="id_category" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cubcategory">
+            <EntityTypeMapping TypeName="walletdbModel.Cubcategory">
+              <MappingFragment StoreEntitySet="Cubcategory">
+                <ScalarProperty Name="id_subcategory" ColumnName="id_subcategory" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id_category" ColumnName="id_category" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Language">
+            <EntityTypeMapping TypeName="walletdbModel.Language">
+              <MappingFragment StoreEntitySet="Language">
+                <ScalarProperty Name="id_language" ColumnName="id_language" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentMethod">
+            <EntityTypeMapping TypeName="walletdbModel.PaymentMethod">
+              <MappingFragment StoreEntitySet="PaymentMethod">
+                <ScalarProperty Name="id_payment_method" ColumnName="id_payment_method" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="walletdbModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transaction">
+            <EntityTypeMapping TypeName="walletdbModel.Transaction">
+              <MappingFragment StoreEntitySet="Transaction">
+                <ScalarProperty Name="Id_transaction" ColumnName="Id_transaction" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="id_payment_method" ColumnName="id_payment_method" />
+                <ScalarProperty Name="id_subcategory" ColumnName="id_subcategory" />
+                <ScalarProperty Name="transaction1" ColumnName="transaction" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="walletdbModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="walletdbModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="walletdbModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="walletdbModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="walletdbModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="walletdbModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="walletdbModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="walletdbModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="walletdbModel.Store.sp_upgraddiagrams" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
