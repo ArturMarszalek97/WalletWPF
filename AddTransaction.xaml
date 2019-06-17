@@ -32,12 +32,7 @@
         <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="10" Text="Data"/>
         <DatePicker Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Margin="10"/>
         <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="10" Text="Forma płatności"/>
-        <ComboBox Grid.Row="3" Grid.Column="1" Margin="10">
-            <ComboBoxItem IsSelected="True">Gotówka</ComboBoxItem>
-            <ComboBoxItem>Gotówka za pobraniem</ComboBoxItem>
-            <ComboBoxItem>Przelew</ComboBoxItem>
-            <ComboBoxItem>Karta płatnicza</ComboBoxItem>
-            <ComboBoxItem>BLIK</ComboBoxItem>
+        <ComboBox ItemsSource="{Binding}" SelectedValuePath="id_payment_method" DisplayMemberPath="name" x:Name="combobox1" Grid.Row="3" Grid.Column="1" Margin="10" SelectionChanged="ComboBox_SelectionChanged">
         </ComboBox>
         <Button Grid.Row="5" Grid.Column="0" Width="70" HorizontalAlignment="Right" Margin="10">OK</Button>
         <Button Grid.Row="5" Grid.Column="1" Width="80" HorizontalAlignment="Right" Margin="10">Anuluj</Button>
