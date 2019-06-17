@@ -28,7 +28,7 @@ namespace WalletWPF
         public List<PaymentMethod> PaymentMethods { get; set; }
         private void ListPaymentMethod()
         {
-            walletdbEntities1 dc = new walletdbEntities1();
+            walletdbEntities2 dc = new walletdbEntities2();
             var item = dc.PaymentMethod.ToList();
             PaymentMethods = item;
             DataContext = PaymentMethods;

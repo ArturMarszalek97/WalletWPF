@@ -15,10 +15,10 @@ namespace WalletWPF
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class walletdbEntities1 : DbContext
+    public partial class walletdbEntities2 : DbContext
     {
-        public walletdbEntities1()
-            : base("name=walletdbEntities1")
+        public walletdbEntities2()
+            : base("name=walletdbEntities2")
         {
         }
     
@@ -28,9 +28,11 @@ namespace WalletWPF
         }
     
         public virtual DbSet<Category> Category { get; set; }
-        public virtual DbSet<Cubcategory> Cubcategory { get; set; }
+        public virtual DbSet<Commitment> Commitment { get; set; }
+        public virtual DbSet<ConstOrder> ConstOrder { get; set; }
         public virtual DbSet<Language> Language { get; set; }
         public virtual DbSet<PaymentMethod> PaymentMethod { get; set; }
+        public virtual DbSet<Subcategory> Subcategory { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Transaction> Transaction { get; set; }
     

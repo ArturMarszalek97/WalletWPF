@@ -103,10 +103,13 @@
     <Compile Include="Category.cs">
       <DependentUpon>WalletModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Commitment.cs">
+      <DependentUpon>WalletModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Commitment.xaml.cs">
       <DependentUpon>Commitment.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Cubcategory.cs">
+    <Compile Include="ConstOrder.cs">
       <DependentUpon>WalletModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Currency.xaml.cs">
@@ -144,6 +147,9 @@
       <DependentUpon>WalletModel.tt</DependentUpon>
     </Compile>
     <Compile Include="sp_helpdiagrams_Result.cs">
+      <DependentUpon>WalletModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Subcategory.cs">
       <DependentUpon>WalletModel.tt</DependentUpon>
     </Compile>
     <Compile Include="sysdiagrams.cs">

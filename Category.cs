@@ -17,13 +17,13 @@ namespace WalletWPF
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Category()
         {
-            this.Cubcategory = new HashSet<Cubcategory>();
+            this.Subcategory = new HashSet<Subcategory>();
         }
     
         public int id_category { get; set; }
         public string name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Cubcategory> Cubcategory { get; set; }
+        public virtual ICollection<Subcategory> Subcategory { get; set; }
     }
 }
