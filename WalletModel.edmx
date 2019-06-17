@@ -12,13 +12,25 @@
           <Property Name="id_category" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="text" />
         </EntityType>
-        <EntityType Name="Cubcategory">
+        <EntityType Name="Commitment">
           <Key>
-            <PropertyRef Name="id_subcategory" />
+            <PropertyRef Name="id_commitment" />
           </Key>
-          <Property Name="id_subcategory" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_commitment" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="text" />
-          <Property Name="id_category" Type="int" />
+          <Property Name="amount" Type="float" />
+          <Property Name="number_of_installments" Type="int" />
+          <Property Name="date" Type="date" />
+        </EntityType>
+        <EntityType Name="ConstOrder">
+          <Key>
+            <PropertyRef Name="id_const_order" />
+          </Key>
+          <Property Name="id_const_order" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="text" />
+          <Property Name="amount" Type="float" />
+          <Property Name="date_const_order" Type="date" />
+          <Property Name="id_subcategory" Type="int" />
         </EntityType>
         <EntityType Name="Language">
           <Key>
@@ -33,6 +45,15 @@
           </Key>
           <Property Name="id_payment_method" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="text" />
+          <Property Name="balance" Type="float" />
+        </EntityType>
+        <EntityType Name="Subcategory">
+          <Key>
+            <PropertyRef Name="id_subcategory" />
+          </Key>
+          <Property Name="id_subcategory" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="text" />
+          <Property Name="id_category" Type="int" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -49,40 +70,37 @@
             <PropertyRef Name="Id_transaction" />
           </Key>
           <Property Name="Id_transaction" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="comment" Type="text" />
+          <Property Name="name" Type="text" />
           <Property Name="amount" Type="float" />
-          <Property Name="date" Type="date" />
+          <Property Name="date_transaction" Type="date" />
           <Property Name="id_payment_method" Type="int" />
           <Property Name="id_subcategory" Type="int" />
-          <Property Name="transaction" Type="bit" />
         </EntityType>
-        <Association Name="FK_Cubcategory_Category">
-          <End Role="Category" Type="Self.Category" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Cubcategory" Type="Self.Cubcategory" Multiplicity="*" />
+        <Association Name="FK_ConstOrder_Subcategory">
+          <End Role="Subcategory" Type="Self.Subcategory" Multiplicity="0..1" />
+          <End Role="ConstOrder" Type="Self.ConstOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subcategory">
+              <PropertyRef Name="id_subcategory" />
+            </Principal>
+            <Dependent Role="ConstOrder">
+              <PropertyRef Name="id_subcategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subcategory_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Subcategory" Type="Self.Subcategory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Category">
               <PropertyRef Name="id_category" />
             </Principal>
-            <Dependent Role="Cubcategory">
+            <Dependent Role="Subcategory">
               <PropertyRef Name="id_category" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Transaction_Cubcategory">
-          <End Role="Cubcategory" Type="Self.Cubcategory" Multiplicity="0..1" />
-          <End Role="Transaction" Type="Self.Transaction" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cubcategory">
-              <PropertyRef Name="id_subcategory" />
-            </Principal>
-            <Dependent Role="Transaction">
-              <PropertyRef Name="id_subcategory" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Transaction_PaymentMethod1">
+        <Association Name="FK_Transaction_PaymentMethod">
           <End Role="PaymentMethod" Type="Self.PaymentMethod" Multiplicity="0..1" />
           <End Role="Transaction" Type="Self.Transaction" Multiplicity="*" />
           <ReferentialConstraint>
@@ -91,6 +109,18 @@
             </Principal>
             <Dependent Role="Transaction">
               <PropertyRef Name="id_payment_method" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaction_Subcategory">
+          <End Role="Subcategory" Type="Self.Subcategory" Multiplicity="0..1" />
+          <End Role="Transaction" Type="Self.Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subcategory">
+              <PropertyRef Name="id_subcategory" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="id_subcategory" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -127,21 +157,27 @@
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="walletdbModelStoreContainer">
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Cubcategory" EntityType="Self.Cubcategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Commitment" EntityType="Self.Commitment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ConstOrder" EntityType="Self.ConstOrder" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Language" EntityType="Self.Language" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PaymentMethod" EntityType="Self.PaymentMethod" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Subcategory" EntityType="Self.Subcategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Transaction" EntityType="Self.Transaction" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Cubcategory_Category" Association="Self.FK_Cubcategory_Category">
-            <End Role="Category" EntitySet="Category" />
-            <End Role="Cubcategory" EntitySet="Cubcategory" />
+          <AssociationSet Name="FK_ConstOrder_Subcategory" Association="Self.FK_ConstOrder_Subcategory">
+            <End Role="Subcategory" EntitySet="Subcategory" />
+            <End Role="ConstOrder" EntitySet="ConstOrder" />
           </AssociationSet>
-          <AssociationSet Name="FK_Transaction_Cubcategory" Association="Self.FK_Transaction_Cubcategory">
-            <End Role="Cubcategory" EntitySet="Cubcategory" />
+          <AssociationSet Name="FK_Subcategory_Category" Association="Self.FK_Subcategory_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Subcategory" EntitySet="Subcategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction_PaymentMethod" Association="Self.FK_Transaction_PaymentMethod">
+            <End Role="PaymentMethod" EntitySet="PaymentMethod" />
             <End Role="Transaction" EntitySet="Transaction" />
           </AssociationSet>
-          <AssociationSet Name="FK_Transaction_PaymentMethod1" Association="Self.FK_Transaction_PaymentMethod1">
-            <End Role="PaymentMethod" EntitySet="PaymentMethod" />
+          <AssociationSet Name="FK_Transaction_Subcategory" Association="Self.FK_Transaction_Subcategory">
+            <End Role="Subcategory" EntitySet="Subcategory" />
             <End Role="Transaction" EntitySet="Transaction" />
           </AssociationSet>
         </EntityContainer>
@@ -156,17 +192,28 @@
           </Key>
           <Property Name="id_category" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Cubcategory" Relationship="Self.FK_Cubcategory_Category" FromRole="Category" ToRole="Cubcategory" />
+          <NavigationProperty Name="Subcategory" Relationship="Self.FK_Subcategory_Category" FromRole="Category" ToRole="Subcategory" />
         </EntityType>
-        <EntityType Name="Cubcategory">
+        <EntityType Name="Commitment">
           <Key>
-            <PropertyRef Name="id_subcategory" />
+            <PropertyRef Name="id_commitment" />
           </Key>
-          <Property Name="id_subcategory" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_commitment" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="id_category" Type="Int32" />
-          <NavigationProperty Name="Category" Relationship="Self.FK_Cubcategory_Category" FromRole="Cubcategory" ToRole="Category" />
-          <NavigationProperty Name="Transaction" Relationship="Self.FK_Transaction_Cubcategory" FromRole="Cubcategory" ToRole="Transaction" />
+          <Property Name="amount" Type="Double" />
+          <Property Name="number_of_installments" Type="Int32" />
+          <Property Name="date" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="ConstOrder">
+          <Key>
+            <PropertyRef Name="id_const_order" />
+          </Key>
+          <Property Name="id_const_order" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="amount" Type="Double" />
+          <Property Name="date_const_order" Type="DateTime" Precision="0" />
+          <Property Name="id_subcategory" Type="Int32" />
+          <NavigationProperty Name="Subcategory" Relationship="Self.FK_ConstOrder_Subcategory" FromRole="ConstOrder" ToRole="Subcategory" />
         </EntityType>
         <EntityType Name="Language">
           <Key>
@@ -181,7 +228,19 @@
           </Key>
           <Property Name="id_payment_method" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Transaction" Relationship="Self.FK_Transaction_PaymentMethod1" FromRole="PaymentMethod" ToRole="Transaction" />
+          <Property Name="balance" Type="Double" />
+          <NavigationProperty Name="Transaction" Relationship="Self.FK_Transaction_PaymentMethod" FromRole="PaymentMethod" ToRole="Transaction" />
+        </EntityType>
+        <EntityType Name="Subcategory">
+          <Key>
+            <PropertyRef Name="id_subcategory" />
+          </Key>
+          <Property Name="id_subcategory" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="id_category" Type="Int32" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_Subcategory_Category" FromRole="Subcategory" ToRole="Category" />
+          <NavigationProperty Name="ConstOrder" Relationship="Self.FK_ConstOrder_Subcategory" FromRole="Subcategory" ToRole="ConstOrder" />
+          <NavigationProperty Name="Transaction" Relationship="Self.FK_Transaction_Subcategory" FromRole="Subcategory" ToRole="Transaction" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -198,42 +257,39 @@
             <PropertyRef Name="Id_transaction" />
           </Key>
           <Property Name="Id_transaction" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="amount" Type="Double" />
-          <Property Name="date" Type="DateTime" Precision="0" />
+          <Property Name="date_transaction" Type="DateTime" Precision="0" />
           <Property Name="id_payment_method" Type="Int32" />
           <Property Name="id_subcategory" Type="Int32" />
-          <Property Name="transaction1" Type="Boolean" />
-          <NavigationProperty Name="Cubcategory" Relationship="Self.FK_Transaction_Cubcategory" FromRole="Transaction" ToRole="Cubcategory" />
-          <NavigationProperty Name="PaymentMethod" Relationship="Self.FK_Transaction_PaymentMethod1" FromRole="Transaction" ToRole="PaymentMethod" />
+          <NavigationProperty Name="PaymentMethod" Relationship="Self.FK_Transaction_PaymentMethod" FromRole="Transaction" ToRole="PaymentMethod" />
+          <NavigationProperty Name="Subcategory" Relationship="Self.FK_Transaction_Subcategory" FromRole="Transaction" ToRole="Subcategory" />
         </EntityType>
-        <Association Name="FK_Cubcategory_Category">
-          <End Role="Category" Type="Self.Category" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Cubcategory" Type="Self.Cubcategory" Multiplicity="*" />
+        <Association Name="FK_Subcategory_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Subcategory" Type="Self.Subcategory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Category">
               <PropertyRef Name="id_category" />
             </Principal>
-            <Dependent Role="Cubcategory">
+            <Dependent Role="Subcategory">
               <PropertyRef Name="id_category" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Transaction_Cubcategory">
-          <End Role="Cubcategory" Type="Self.Cubcategory" Multiplicity="0..1" />
-          <End Role="Transaction" Type="Self.Transaction" Multiplicity="*" />
+        <Association Name="FK_ConstOrder_Subcategory">
+          <End Role="Subcategory" Type="Self.Subcategory" Multiplicity="0..1" />
+          <End Role="ConstOrder" Type="Self.ConstOrder" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Cubcategory">
+            <Principal Role="Subcategory">
               <PropertyRef Name="id_subcategory" />
             </Principal>
-            <Dependent Role="Transaction">
+            <Dependent Role="ConstOrder">
               <PropertyRef Name="id_subcategory" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Transaction_PaymentMethod1">
+        <Association Name="FK_Transaction_PaymentMethod">
           <End Role="PaymentMethod" Type="Self.PaymentMethod" Multiplicity="0..1" />
           <End Role="Transaction" Type="Self.Transaction" Multiplicity="*" />
           <ReferentialConstraint>
@@ -245,23 +301,41 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="walletdbEntities1" annotation:LazyLoadingEnabled="true">
+        <Association Name="FK_Transaction_Subcategory">
+          <End Role="Subcategory" Type="Self.Subcategory" Multiplicity="0..1" />
+          <End Role="Transaction" Type="Self.Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subcategory">
+              <PropertyRef Name="id_subcategory" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="id_subcategory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="walletdbEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Category" EntityType="Self.Category" />
-          <EntitySet Name="Cubcategory" EntityType="Self.Cubcategory" />
+          <EntitySet Name="Commitment" EntityType="Self.Commitment" />
+          <EntitySet Name="ConstOrder" EntityType="Self.ConstOrder" />
           <EntitySet Name="Language" EntityType="Self.Language" />
           <EntitySet Name="PaymentMethod" EntityType="Self.PaymentMethod" />
+          <EntitySet Name="Subcategory" EntityType="Self.Subcategory" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Transaction" EntityType="Self.Transaction" />
-          <AssociationSet Name="FK_Cubcategory_Category" Association="Self.FK_Cubcategory_Category">
+          <AssociationSet Name="FK_Subcategory_Category" Association="Self.FK_Subcategory_Category">
             <End Role="Category" EntitySet="Category" />
-            <End Role="Cubcategory" EntitySet="Cubcategory" />
+            <End Role="Subcategory" EntitySet="Subcategory" />
           </AssociationSet>
-          <AssociationSet Name="FK_Transaction_Cubcategory" Association="Self.FK_Transaction_Cubcategory">
-            <End Role="Cubcategory" EntitySet="Cubcategory" />
+          <AssociationSet Name="FK_ConstOrder_Subcategory" Association="Self.FK_ConstOrder_Subcategory">
+            <End Role="Subcategory" EntitySet="Subcategory" />
+            <End Role="ConstOrder" EntitySet="ConstOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction_PaymentMethod" Association="Self.FK_Transaction_PaymentMethod">
+            <End Role="PaymentMethod" EntitySet="PaymentMethod" />
             <End Role="Transaction" EntitySet="Transaction" />
           </AssociationSet>
-          <AssociationSet Name="FK_Transaction_PaymentMethod1" Association="Self.FK_Transaction_PaymentMethod1">
-            <End Role="PaymentMethod" EntitySet="PaymentMethod" />
+          <AssociationSet Name="FK_Transaction_Subcategory" Association="Self.FK_Transaction_Subcategory">
+            <End Role="Subcategory" EntitySet="Subcategory" />
             <End Role="Transaction" EntitySet="Transaction" />
           </AssociationSet>
           <FunctionImport Name="sp_alterdiagram">
@@ -311,7 +385,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="walletdbModelStoreContainer" CdmEntityContainer="walletdbEntities1">
+        <EntityContainerMapping StorageEntityContainer="walletdbModelStoreContainer" CdmEntityContainer="walletdbEntities2">
           <EntitySetMapping Name="Category">
             <EntityTypeMapping TypeName="walletdbModel.Category">
               <MappingFragment StoreEntitySet="Category">
@@ -320,12 +394,25 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Cubcategory">
-            <EntityTypeMapping TypeName="walletdbModel.Cubcategory">
-              <MappingFragment StoreEntitySet="Cubcategory">
-                <ScalarProperty Name="id_subcategory" ColumnName="id_subcategory" />
+          <EntitySetMapping Name="Commitment">
+            <EntityTypeMapping TypeName="walletdbModel.Commitment">
+              <MappingFragment StoreEntitySet="Commitment">
+                <ScalarProperty Name="id_commitment" ColumnName="id_commitment" />
                 <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="id_category" ColumnName="id_category" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="number_of_installments" ColumnName="number_of_installments" />
+                <ScalarProperty Name="date" ColumnName="date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ConstOrder">
+            <EntityTypeMapping TypeName="walletdbModel.ConstOrder">
+              <MappingFragment StoreEntitySet="ConstOrder">
+                <ScalarProperty Name="id_const_order" ColumnName="id_const_order" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="date_const_order" ColumnName="date_const_order" />
+                <ScalarProperty Name="id_subcategory" ColumnName="id_subcategory" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -342,6 +429,16 @@
               <MappingFragment StoreEntitySet="PaymentMethod">
                 <ScalarProperty Name="id_payment_method" ColumnName="id_payment_method" />
                 <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="balance" ColumnName="balance" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subcategory">
+            <EntityTypeMapping TypeName="walletdbModel.Subcategory">
+              <MappingFragment StoreEntitySet="Subcategory">
+                <ScalarProperty Name="id_subcategory" ColumnName="id_subcategory" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id_category" ColumnName="id_category" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -360,12 +457,11 @@
             <EntityTypeMapping TypeName="walletdbModel.Transaction">
               <MappingFragment StoreEntitySet="Transaction">
                 <ScalarProperty Name="Id_transaction" ColumnName="Id_transaction" />
-                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="amount" ColumnName="amount" />
-                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="date_transaction" ColumnName="date_transaction" />
                 <ScalarProperty Name="id_payment_method" ColumnName="id_payment_method" />
                 <ScalarProperty Name="id_subcategory" ColumnName="id_subcategory" />
-                <ScalarProperty Name="transaction1" ColumnName="transaction" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

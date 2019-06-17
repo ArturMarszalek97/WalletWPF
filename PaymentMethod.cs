@@ -22,6 +22,7 @@ namespace WalletWPF
     
         public int id_payment_method { get; set; }
         public string name { get; set; }
+        public Nullable<double> balance { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Transaction> Transaction { get; set; }

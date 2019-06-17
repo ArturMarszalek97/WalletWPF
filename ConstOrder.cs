@@ -12,16 +12,14 @@ namespace WalletWPF
     using System;
     using System.Collections.Generic;
     
-    public partial class Transaction
+    public partial class ConstOrder
     {
-        public int Id_transaction { get; set; }
+        public int id_const_order { get; set; }
         public string name { get; set; }
         public Nullable<double> amount { get; set; }
-        public Nullable<System.DateTime> date_transaction { get; set; }
-        public Nullable<int> id_payment_method { get; set; }
+        public Nullable<System.DateTime> date_const_order { get; set; }
         public Nullable<int> id_subcategory { get; set; }
     
-        public virtual PaymentMethod PaymentMethod { get; set; }
         public virtual Subcategory Subcategory { get; set; }
     }
 }

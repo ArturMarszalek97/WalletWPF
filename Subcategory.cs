@@ -12,11 +12,12 @@ namespace WalletWPF
     using System;
     using System.Collections.Generic;
     
-    public partial class Cubcategory
+    public partial class Subcategory
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Cubcategory()
+        public Subcategory()
         {
+            this.ConstOrder = new HashSet<ConstOrder>();
             this.Transaction = new HashSet<Transaction>();
         }
     
@@ -25,6 +26,8 @@ namespace WalletWPF
         public Nullable<int> id_category { get; set; }
     
         public virtual Category Category { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ConstOrder> ConstOrder { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Transaction> Transaction { get; set; }
     }

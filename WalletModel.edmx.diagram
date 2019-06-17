@@ -4,16 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="5a67de55443744f090f4722d3496037b" Name="Diagram1">
-        <EntityTypeShape EntityType="walletdbModel.Category" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="walletdbModel.Cubcategory" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="walletdbModel.Language" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="walletdbModel.PaymentMethod" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="walletdbModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="walletdbModel.Transaction" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <AssociationConnector Association="walletdbModel.FK_Cubcategory_Category" ManuallyRouted="false" />
-        <AssociationConnector Association="walletdbModel.FK_Transaction_Cubcategory" ManuallyRouted="false" />
-        <AssociationConnector Association="walletdbModel.FK_Transaction_PaymentMethod1" ManuallyRouted="false" />
+      <Diagram DiagramId="204444a790af406c9a922d4b4d100600" Name="Diagram1">
+        <EntityTypeShape EntityType="walletdbModel.Category" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="walletdbModel.Commitment" Width="1.5" PointX="0.75" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="walletdbModel.ConstOrder" Width="1.5" PointX="5.25" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="walletdbModel.Language" Width="1.5" PointX="2.75" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="walletdbModel.PaymentMethod" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="walletdbModel.Subcategory" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="walletdbModel.sysdiagrams" Width="1.5" PointX="4.75" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="walletdbModel.Transaction" Width="1.5" PointX="8.25" PointY="3.375" IsExpanded="true" />
+        <AssociationConnector Association="walletdbModel.FK_Subcategory_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="walletdbModel.FK_ConstOrder_Subcategory" ManuallyRouted="false" />
+        <AssociationConnector Association="walletdbModel.FK_Transaction_PaymentMethod" ManuallyRouted="false" />
+        <AssociationConnector Association="walletdbModel.FK_Transaction_Subcategory" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
