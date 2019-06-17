@@ -110,9 +110,11 @@
                             <StackPanel Orientation="Horizontal" Margin="5,5,5,5" Width="666">
                                 <DataGrid ItemsSource="{Binding ConstOrders}" SelectedItem="{Binding SelectedConstOrder}" SelectionMode="Single" SelectedIndex="{Binding SelectedIndex}" VerticalAlignment="Top" AutoGenerateColumns="False" Margin="5,5,5,5" Width="645">
                                     <DataGrid.Columns>
-                                        <DataGridTextColumn Header="Nazwa" Binding="{Binding Path=ConstOrderName}"></DataGridTextColumn>
-                                        <DataGridTextColumn Header="Kategoria" Binding="{Binding Path=Category}"></DataGridTextColumn>
-                                        <DataGridTextColumn Header="Powtórzenie wydatku" Binding="{Binding Path=RepeatExpense}"></DataGridTextColumn>
+                                        <DataGridTextColumn Header="nazwa zlecenia stałego" Binding="{Binding Path=ConstOrderName}"></DataGridTextColumn>
+                                        <DataGridTextColumn Header="kwota" Binding="{Binding Path=Category}"></DataGridTextColumn>
+                                        <DataGridTextColumn Header="kategoria" Binding="{Binding Path=Category}"></DataGridTextColumn>
+                                        <DataGridTextColumn Header="podkategoria" Binding="{Binding Path=Category}"></DataGridTextColumn>
+                                        <DataGridTextColumn Header="cykliczność wydatku" Binding="{Binding Path=RepeatExpense}"></DataGridTextColumn>
                                     </DataGrid.Columns>
                                 </DataGrid>
                             </StackPanel>

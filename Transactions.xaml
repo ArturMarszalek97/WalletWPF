@@ -18,6 +18,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
@@ -93,27 +94,41 @@
             </Grid>
         </Grid>
 
-        <Grid Grid.ColumnSpan="3" Grid.Row="1">
+        <Grid Margin="5" Grid.Row="1">
+            <Button Name="previous">poprzedni miesiąc</Button>
+        </Grid>
+
+        <Grid Margin="5" Grid.Row="1" Grid.Column="1">
+            <Button Name="previousd">miesiąc</Button>
+        </Grid>
+
+        <Grid Margin="5" Grid.Row="1" Grid.Column="2">
+            <Button Name="next">następny miesiąc -></Button>
+        </Grid>
+
+        <Grid Grid.ColumnSpan="3" Grid.Row="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="0"/>
                 <RowDefinition Height="300"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <GroupBox HorizontalAlignment="Center" Header="Lista transakcji" FontWeight="Bold" VerticalAlignment="Center" Height="350" Margin="0, 0, -10, 30" Width="700" Grid.RowSpan="3">
+            <GroupBox HorizontalAlignment="Center" Header="Lista transakcji" FontWeight="Bold" VerticalAlignment="Center" Height="350" Margin="0, 0, -10, 30" Width="780" Grid.RowSpan="3">
                 <Grid Margin="0,0,13,0">
                     <Grid.RowDefinitions>
                         <RowDefinition />
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="5,5,10,5">
-                        <StackPanel Width="662">
-                            <StackPanel Orientation="Horizontal" Margin="5,5,5,5" Width="666">
-                                <DataGrid ItemsSource="{Binding Transactions}" SelectedItem="{Binding SelectedTransaction}" SelectionMode="Single" SelectedIndex="{Binding SelectedIndex}" VerticalAlignment="Top" AutoGenerateColumns="False" Margin="5,5,5,5" Width="645">
+                        <StackPanel Width="780">
+                            <StackPanel Orientation="Horizontal" Margin="5,5,5,5" Width="780">
+                                <DataGrid ItemsSource="{Binding Transactions}" SelectedItem="{Binding SelectedTransaction}" SelectionMode="Single" SelectedIndex="{Binding SelectedIndex}" VerticalAlignment="Top" AutoGenerateColumns="False" Margin="5,5,5,5" Width="770">
                                     <DataGrid.Columns>
-                                        <DataGridTextColumn Header="Notatka" Binding="{Binding Path=Note}"></DataGridTextColumn>
-                                        <DataGridTextColumn Header="Kategoria" Binding="{Binding Path=Category}"></DataGridTextColumn>
-                                        <DataGridTextColumn Header="Forma płatności" Binding="{Binding Path=PaymentMethod}"></DataGridTextColumn>
-                                        <DataGridTextColumn Header="Data" Binding="{Binding Path=Date}"></DataGridTextColumn>
+                                        <DataGridTextColumn Header="nazwa transakcji" Binding="{Binding Path=Note}" ></DataGridTextColumn>
+                                        <DataGridTextColumn Header="cena" Binding="{Binding Path=Category}" ></DataGridTextColumn>
+                                        <DataGridTextColumn Header="kategoria" Binding="{Binding Path=Category}" ></DataGridTextColumn>
+                                        <DataGridTextColumn Header="podkategoria" Binding="{Binding Path=Category}" ></DataGridTextColumn>
+                                        <DataGridTextColumn Header="forma płatności" Binding="{Binding Path=PaymentMethod}" ></DataGridTextColumn>
+                                        <DataGridTextColumn Header="data" Binding="{Binding Path=Date}" ></DataGridTextColumn>
                                     </DataGrid.Columns>
                                 </DataGrid>
                             </StackPanel>

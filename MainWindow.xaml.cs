@@ -24,7 +24,7 @@ namespace WalletWPF
         public MainWindow()
         {
             InitializeComponent();
-            DBHelper.EstablishConnection();
+            //DBHelper.EstablishConnection();
 
             Main.Content = new MainView();
             Consumo consumo = new Consumo();
