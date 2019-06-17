@@ -135,7 +135,7 @@
                 <Button Margin="10" Background="#FF8522BD" BorderBrush="#FF8522BD" Height="40" Click="Button_Click">
                     <Grid Width="160">
                         <materialDesign:PackIcon Kind="ViewDashboard" Foreground="White" VerticalAlignment="Center"/>
-                        <TextBlock HorizontalAlignment="Center" Foreground="White" FontWeight="Bold" Text="RAPORTY" FontFamily="Champagne &amp; Limousines"/>
+                        <TextBlock HorizontalAlignment="Center" Foreground="White" FontWeight="Bold" Text="ZESTAWIENIE" FontFamily="Champagne &amp; Limousines"/>
                     </Grid>
                 </Button>
 
@@ -163,7 +163,7 @@
                 <Button Name="Payments" Margin="10" Height="40" Background="#FF8522BD" BorderBrush="#FF8522BD" Click="Payments_Click">
                     <Grid Width="160">
                         <materialDesign:PackIcon Kind="PaymentSettings" Foreground="White" VerticalAlignment="Center"/>
-                        <TextBlock HorizontalAlignment="Center" Foreground="White" FontWeight="Bold" Text="  FORMY PŁATNOŚCI" FontFamily="Champagne &amp; Limousines"/>
+                        <TextBlock HorizontalAlignment="Center" Foreground="White" FontWeight="Bold" Text="RAPORTY" FontFamily="Champagne &amp; Limousines"/>
                     </Grid>
                 </Button>
 
