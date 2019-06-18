@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Spire.Pdf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,6 +33,11 @@ namespace WalletWPF
             balance_of_credit_card.Text = AccountHelper.balance_of_credit_card.ToString();
             account_balance.Text = AccountHelper.account_balance.ToString();
             number_of_transaction.Text = AccountHelper.number_of_transaction.ToString();
+        }
+
+        private void Printzestawienie_Click(object sender, RoutedEventArgs e)
+        {
+            PdfDocument pdfDocument = new PdfDocument();
         }
     }
 }

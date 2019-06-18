@@ -15,6 +15,13 @@ namespace WalletWPF.ViewModels
         public static void AddNewPaymentMethod(PaymentMethod paymentMethod)
         {
             list_of_paymentMethod.Add(paymentMethod);
+            SaveInDataBase(paymentMethod);
+        }
+
+        private static void SaveInDataBase(PaymentMethod paymentMethod)
+        {
+            db.PaymentMethod.Add(paymentMethod);
+            db.SaveChanges();
         }
 
         public static ObservableCollection<PaymentMethod> GetListOfPaymentMethod()
@@ -25,12 +32,14 @@ namespace WalletWPF.ViewModels
 
         internal static void InitList()
         {
-            list_of_paymentMethod = new ObservableCollection<PaymentMethod>();
+            var list = db.PaymentMethod.ToList();
+            list_of_paymentMethod = new ObservableCollection<PaymentMethod>(list);
         }
 
         internal static void DeletePaymentMethod(int selectedIndex)
         {
             list_of_paymentMethod.RemoveAt(selectedIndex);
+     
         }
 
         internal static void DeletePaymentMethod(PaymentMethod paymentMethod)

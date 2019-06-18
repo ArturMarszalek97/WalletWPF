@@ -65,21 +65,28 @@ namespace WalletWPF
 
         private void OkButton_Click(object sender, RoutedEventArgs e)
         {
-            if(editStatus == true)
+            try
             {
-                ConstOrderVM.DeleteConstOrder(this.constOrder);
+                if (editStatus == true)
+                {
+                    ConstOrderVM.DeleteConstOrder(this.constOrder);
+                }
+
+                ConstOrder constOrder = new ConstOrder();
+                constOrder.name = nameOfConstOrder.Text;
+                constOrder.amount = Convert.ToDouble(amountOfConstOrder.Text);
+                constOrder.category = categoriesOfConstOrder.SelectedItem.ToString();
+                constOrder.subcategory = subcategoriesOfConstOrder.SelectedItem.ToString();
+                constOrder.period = periodicityOfConstOrder.SelectedItem.ToString();
+
+                ConstOrderVM.InitListOfConstOrders();
+                ConstOrderVM.AddNewConstOrder(constOrder);
+                this.Close();
             }
-
-            ConstOrder constOrder = new ConstOrder();
-            constOrder.name = nameOfConstOrder.Text;
-            constOrder.amount = Convert.ToDouble(amountOfConstOrder.Text);
-            constOrder.category = categoriesOfConstOrder.SelectedItem.ToString();
-            constOrder.subcategory = subcategoriesOfConstOrder.SelectedItem.ToString();
-            constOrder.period = periodicityOfConstOrder.SelectedItem.ToString();
-
-            ConstOrderVM.InitListOfConstOrders();
-            ConstOrderVM.AddNewConstOrder(constOrder);
-            this.Close();
+            catch
+            {
+                MessageBox.Show("Wpisane dane są niepoprawne!");
+            }
         }
 
         private void CategoriesOfConstOrder_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -10,10 +10,18 @@ namespace WalletWPF.ViewModels
     public static class TransactionVM
     {
         private static ObservableCollection<Transaction> list_of_transactions = new ObservableCollection<Transaction>();
+        private static walletdbEntities2 db = new walletdbEntities2();
 
         public static void AddNewTransaction(Transaction transaction)
         {
             list_of_transactions.Add(transaction);
+            SaveInDatabase(transaction);
+        }
+
+        private static void SaveInDatabase(Transaction transaction)
+        {
+            db.Transaction.Add(transaction);
+            db.SaveChanges();
         }
 
         public static ObservableCollection<Transaction> GetTransactions()

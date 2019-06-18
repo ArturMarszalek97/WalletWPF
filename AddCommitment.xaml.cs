@@ -49,23 +49,31 @@ namespace WalletWPF
 
         private void OkButton_Click(object sender, RoutedEventArgs e)
         {
-            if(editStatus == true)
+            try
             {
-                CommitmentsVM.DeleteCommitment(this.commitment);
+                if (editStatus == true)
+                {
+                    CommitmentsVM.DeleteCommitment(this.commitment);
+                }
+
+                Commitment commitment = new Commitment
+                {
+                    name = nameOfCommitment.Text,
+                    amount = Convert.ToDouble(installmentOfCommitment.Text),
+                    number_of_installments = Convert.ToInt32(numberOfInstallment.Text),
+                    date = dateOfCommitment.SelectedDate.Value
+                };
+
+
+                CommitmentsVM.AddNewCommitment(commitment);
+
+                this.Close();
             }
-
-            Commitment commitment = new Commitment
+            catch
             {
-                name = nameOfCommitment.Text,
-                amount = Convert.ToDouble(installmentOfCommitment.Text),
-                number_of_installments = Convert.ToInt32(numberOfInstallment.Text),
-                date = dateOfCommitment.SelectedDate.Value
-            };
+                MessageBox.Show("Wpisane dane są niepoprawne!");
+            }
             
-
-            CommitmentsVM.AddNewCommitment(commitment);
-
-            this.Close();
         }
     }
 }

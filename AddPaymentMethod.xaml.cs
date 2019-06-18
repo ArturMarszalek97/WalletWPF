@@ -22,6 +22,7 @@ namespace WalletWPF
     {
         private bool editStatus = false;
         private PaymentMethod paymentMethod = null;
+        private walletdbEntities2 walletdb = new walletdbEntities2();
         public AddPaymentMethod(PaymentMethod paymentMethod)
         {
             InitializeComponent();
@@ -46,20 +47,28 @@ namespace WalletWPF
 
         private void OkButton_Click(object sender, RoutedEventArgs e)
         {
-            if(editStatus == true)
+            try
             {
-                PaymentMethodVM.DeletePaymentMethod(this.paymentMethod);
+                if (editStatus == true)
+                {
+                    PaymentMethodVM.DeletePaymentMethod(this.paymentMethod);
+                }
+
+                PaymentMethod paymentMethod = new PaymentMethod
+                {
+                    name = nameOfPaymentMethod.Text,
+                    balance = Convert.ToDouble(balanceOfPaymentMethod.Text)
+                };
+
+                PaymentMethodVM.AddNewPaymentMethod(paymentMethod);
+
+                this.Close();
             }
-
-            PaymentMethod paymentMethod = new PaymentMethod
+            catch
             {
-                name = nameOfPaymentMethod.Text,
-                balance = Convert.ToDouble(balanceOfPaymentMethod.Text)
-            };
-
-            PaymentMethodVM.AddNewPaymentMethod(paymentMethod);
-
-            this.Close();
+                MessageBox.Show("Wpisane dane są niepoprawne!");
+            }
+            
         }
     }
 }

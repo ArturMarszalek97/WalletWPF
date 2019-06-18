@@ -24,7 +24,7 @@ namespace WalletWPF
         public Nullable<int> id_payment_method { get; set; }
         public Nullable<int> id_subcategory { get; set; }
     
-        public virtual PaymentMethod PaymentMethod { get; set; }
-        public virtual Subcategory Subcategory { get; set; }
+        public PaymentMethod PaymentMethod { get; set; }
+        public Subcategory Subcategory { get; set; }
     }
 }

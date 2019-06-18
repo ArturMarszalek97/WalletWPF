@@ -33,14 +33,10 @@ namespace WalletWPF
                 InitTransactionToEdit(transaction);
             }
             db = new walletdbEntities2();
-            //ListPaymentMethod();
+            ListPaymentMethod();
             InitCategoryComboBox();
         }
 
-        //public AddTransaction(Transaction transaction)
-        //{
-        //    IntializeComponent();
-        //}
         private void InitTransactionToEdit(Transaction transaction)
         {
             editTransaction = transaction;
@@ -62,18 +58,12 @@ namespace WalletWPF
             dateOfTransaction.SelectedDate = transaction.date_transaction;
         }
 
-        public List<PaymentMethod> PaymentMethods { get; set; }
         private void ListPaymentMethod()
         {
-            PaymentMethod newpaymentMethod = new PaymentMethod
-            {
-                name = "karta debetowa",
-            };
-            PaymentMethodVM.AddNewPaymentMethod(newpaymentMethod);
             var items = PaymentMethodVM.GetListOfPaymentMethod();
             foreach (var item in items)
             {
-                paymentMethod.Items.Add(item.name.ToString());
+                paymentMethod.Items.Add(item.name);
             }
         }
 
@@ -87,40 +77,44 @@ namespace WalletWPF
             }
         }
 
-        //private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
-        //    //var item = paymentMethod.SelectedItem as PaymentMethod;
-        //    //System.Windows.MessageBox.Show(item.name.ToString());
-        //    //var 
-
-        //}
-
         private void OkButton_Click(object sender, RoutedEventArgs e)
         {
-            if(editStatus == true)
+            try
             {
-                TransactionVM.DeleteTransaction(editTransaction);
+                if (editStatus == true)
+                {
+                    TransactionVM.DeleteTransaction(editTransaction);
+                    AccountHelper.number_of_transaction -= 1;
+                }
+
+                Transaction transaction = new Transaction();
+                transaction.name = nameOfTransaction.Text;
+
+                if (expenditure.IsChecked == true)
+                {
+                    transaction.amount = Convert.ToDouble("-" + amountOfTransaction.Text);
+                }
+                else
+                {
+                    transaction.amount = Convert.ToDouble(amountOfTransaction.Text);
+                }
+
+                
+
+                transaction.category = CategoriesComboBox.SelectedItem.ToString();
+                transaction.subcategory = subCategoriesComboBox.SelectedItem.ToString();
+
+                transaction.date_transaction = dateOfTransaction.SelectedDate.Value.Date;
+                transaction.paymentMethod = paymentMethod.SelectedItem.ToString();
+
+                TransactionVM.AddNewTransaction(transaction);
+                AccountHelper.number_of_transaction += 1;
+                this.Close();
             }
-
-            Transaction transaction = new Transaction();
-            transaction.name = nameOfTransaction.Text;
-
-            if(expenditure.IsChecked == true)
+            catch
             {
-                transaction.amount = Convert.ToDouble("-" + amountOfTransaction.Text);
+                MessageBox.Show("Wpisane dane są niepoprawne!");
             }
-            else
-            {
-                transaction.amount = Convert.ToDouble(amountOfTransaction.Text);
-            }
-
-            transaction.category = CategoriesComboBox.SelectedItem.ToString();
-            transaction.subcategory = subCategoriesComboBox.SelectedItem.ToString();
-            transaction.date_transaction = dateOfTransaction.SelectedDate.Value.Date;
-            //transaction.paymentMethod = paymentMethod.SelectedItem.ToString();
-
-            TransactionVM.AddNewTransaction(transaction);
-            this.Close();
         }
 
         private void CategoriesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
