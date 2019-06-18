@@ -17,6 +17,9 @@ namespace WalletWPF
         public int id_const_order { get; set; }
         public string name { get; set; }
         public Nullable<double> amount { get; set; }
+        public string category { get; set; }
+        public string subcategory { get; set; }
+        public string period { get; set; }
         public Nullable<System.DateTime> date_const_order { get; set; }
         public Nullable<int> id_subcategory { get; set; }
     

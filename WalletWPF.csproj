@@ -116,15 +116,7 @@
     <Compile Include="Currency.xaml.cs">
       <DependentUpon>Currency.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DBModels\Account.cs" />
-    <Compile Include="DBModels\Debt.cs" />
-    <Compile Include="DBModels\Expenditure.cs" />
-    <Compile Include="DBModels\Income.cs" />
-    <Compile Include="DBModels\Language.cs" />
-    <Compile Include="DBModels\Loan.cs" />
-    <Compile Include="DBModels\ParentCategory.cs" />
-    <Compile Include="DBModels\PermanentOrder.cs" />
-    <Compile Include="DBModels\Subcategory.cs" />
+    <Compile Include="DBModels\Enums\Periods.cs" />
     <Compile Include="Helpers\DBHelper.cs" />
     <Compile Include="Helpers\InvokeHelper.cs" />
     <Compile Include="Language.cs">
@@ -159,6 +151,7 @@
       <DependentUpon>Transactions.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\CategoryVM.cs" />
+    <Compile Include="ViewModels\ConstOrderVM.cs" />
     <Compile Include="ViewModels\PaymentMethodVM.cs" />
     <Compile Include="ViewModels\SubcategoryVM.cs" />
     <Compile Include="ViewModels\TransactionVM.cs" />
@@ -310,5 +303,6 @@
       <LastGenOutput>WalletModell.cs</LastGenOutput>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -122,9 +122,6 @@ namespace WalletWPF
             //transaction.paymentMethod = paymentMethod.SelectedItem.ToString();
 
             TransactionVM.AddNewTransaction(transaction);
-
-
-
             this.Close();
         }
 

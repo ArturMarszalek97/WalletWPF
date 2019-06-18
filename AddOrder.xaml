@@ -5,9 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WalletWPF"
         mc:Ignorable="d"
-        Title="AddOrder" Height="275" Width="400">
+        Title="AddOrder" Height="360" Width="400">
     <Grid Margin="20">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -21,20 +23,19 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="10" Text="Nazwa"/>
-        <TextBox Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Margin="10"/>
-        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="10" Text="Kategoria"/>
-        <ComboBox Grid.Row="1" Grid.Column="1" Margin="10">
-            <ComboBoxItem></ComboBoxItem>
-            <ComboBoxItem></ComboBoxItem>
-            <ComboBoxItem></ComboBoxItem>
+        <TextBox Name="nameOfConstOrder" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Margin="10"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="10" Text="Kwota"/>
+        <TextBox Name="amountOfConstOrder" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="10"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="10" Text="Kategoria"/>
+        <ComboBox Name="categoriesOfConstOrder" Grid.Row="2" Grid.Column="1" Margin="10" SelectionChanged="CategoriesOfConstOrder_SelectionChanged">
         </ComboBox>
-        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="10" Text="Powtórzenia wydatku"/>
-        <ComboBox Grid.Row="2" Grid.Column="1" Margin="10">
-            <ComboBoxItem></ComboBoxItem>
-            <ComboBoxItem></ComboBoxItem>
-            <ComboBoxItem></ComboBoxItem>
+        <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="10" Text="Podkategoria"/>
+        <ComboBox Name="subcategoriesOfConstOrder" IsEnabled="False" Grid.Row="3" Grid.Column="1" Margin="10">
         </ComboBox>
-        <Button Grid.Row="3" Grid.Column="0" Width="70" HorizontalAlignment="Center" Margin="20">OK</Button>
-        <Button Grid.Row="3" Grid.Column="1" Width="80" HorizontalAlignment="Center" Margin="10">Anuluj</Button>
+        <TextBlock Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Margin="10" Text="Powtórzenia wydatku"/>
+        <ComboBox Name="periodicityOfConstOrder" Grid.Row="4" Grid.Column="1" Margin="10">
+        </ComboBox>
+        <Button Name="okButton" Grid.Row="5" Grid.Column="0" Width="70" HorizontalAlignment="Center" Margin="20" Click="OkButton_Click">OK</Button>
+        <Button Grid.Row="5" Grid.Column="1" Width="80" HorizontalAlignment="Center" Margin="10">Anuluj</Button>
     </Grid>
 </Window>
