@@ -12,17 +12,24 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WalletWPF.ViewModels;
 
 namespace WalletWPF
 {
     /// <summary>
     /// Interaction logic for Commitment.xaml
     /// </summary>
-    public partial class Commitment : Page
+    public partial class Commitments : Page
     {
-        public Commitment()
+        public Commitments()
         {
             InitializeComponent();
+            InitListOfCommitments();
+        }
+
+        private void InitListOfCommitments()
+        {
+            listOfCommitments.ItemsSource = CommitmentsVM.GetCommitments();
         }
 
         private void AddObligation(object sender, RoutedEventArgs e)

@@ -28,7 +28,7 @@ namespace WalletWPF
         }
     
         public virtual DbSet<Category> Category { get; set; }
-        public virtual DbSet<Commitment> Commitment { get; set; }
+        public virtual DbSet<Commitments> Commitment { get; set; }
         public virtual DbSet<ConstOrder> ConstOrder { get; set; }
         public virtual DbSet<Language> Language { get; set; }
         public virtual DbSet<PaymentMethod> PaymentMethod { get; set; }

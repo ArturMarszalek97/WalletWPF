@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WalletWPF"
         mc:Ignorable="d"
-        Title="AddCommitment" Height="450" Width="600">
+        Title="AddCommitment" Height="300" Width="400">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -24,29 +24,15 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="10" Text="Rodzaj zobowiązania"/>
-        <ComboBox Grid.Row="0" Grid.Column="1" Margin="10">
-            <ComboBoxItem>Pożyczka</ComboBoxItem>
-            <ComboBoxItem>Dług</ComboBoxItem>
-        </ComboBox>
-        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="10" Text="Imię"/>
-        <TextBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="10"/>
-        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="10" Text="Nazwisko"/>
-        <TextBox Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Margin="10"/>
-        <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="10" Text="Kwota"/>
-        <TextBox Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Margin="10"/>
+        <TextBox Name="nameOfCommitment" Grid.Row="0" Grid.Column="1" Margin="10"></TextBox>
+        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="10" Text="Wysokość raty"/>
+        <TextBox Name="installmentOfCommitment" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="10"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="10" Text="Liczba rat"/>
+        <TextBox Name="numberOfInstallment" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Margin="10"/>
         <TextBlock Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Margin="10" Text="Data"/>
-        <DatePicker Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Margin="10"/>
-        <TextBlock Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" Margin="10" Text="Forma płatności"/>
-        <ComboBox Grid.Row="5" Grid.Column="1" Margin="10">
-            <ComboBoxItem IsSelected="True">Gotówka</ComboBoxItem>
-            <ComboBoxItem>Gotówka za pobraniem</ComboBoxItem>
-            <ComboBoxItem>Przelew</ComboBoxItem>
-            <ComboBoxItem>Karta płatnicza</ComboBoxItem>
-            <ComboBoxItem>BLIK</ComboBoxItem>
-        </ComboBox>
-        <TextBlock Grid.Row="6" Grid.Column="0" VerticalAlignment="Center" Margin="10" Text="Notatka"/>
-        <TextBox Grid.Row="6" Grid.Column="1" VerticalAlignment="Center" Margin="10"/>
-        <Button Grid.Row="7" Grid.Column="0" Width="70" HorizontalAlignment="Center" Margin="30">OK</Button>
-        <Button Grid.Row="7" Grid.Column="1" Width="80" HorizontalAlignment="Right" Margin="10">Anuluj</Button>
+        <DatePicker Name="dateOfCommitment" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" Margin="10"/>
+        
+        <Button Name="okButton" Grid.Row="7" Grid.Column="0" Width="70" HorizontalAlignment="Center" Margin="30" Click="OkButton_Click">OK</Button>
+        <Button Name="closeButton" Grid.Row="7" Grid.Column="1" Width="80" HorizontalAlignment="Right" Margin="10" Click="CloseButton_Click">Anuluj</Button>
     </Grid>
 </Window>

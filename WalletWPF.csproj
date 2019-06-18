@@ -107,8 +107,8 @@
     <Compile Include="Commitment.cs">
       <DependentUpon>WalletModell.tt</DependentUpon>
     </Compile>
-    <Compile Include="Commitment.xaml.cs">
-      <DependentUpon>Commitment.xaml</DependentUpon>
+    <Compile Include="Commitments.xaml.cs">
+      <DependentUpon>Commitments.xaml</DependentUpon>
     </Compile>
     <Compile Include="ConstOrder.cs">
       <DependentUpon>WalletModell.tt</DependentUpon>
@@ -151,6 +151,7 @@
       <DependentUpon>Transactions.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\CategoryVM.cs" />
+    <Compile Include="ViewModels\CommitmentsVM.cs" />
     <Compile Include="ViewModels\ConstOrderVM.cs" />
     <Compile Include="ViewModels\PaymentMethodVM.cs" />
     <Compile Include="ViewModels\SubcategoryVM.cs" />
@@ -192,7 +193,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Commitment.xaml">
+    <Page Include="Commitments.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

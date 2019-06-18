@@ -27,6 +27,7 @@ namespace WalletWPF
             InitializeComponent();
             //DBHelper.EstablishConnection();
             CategoryVM.InitList();
+            CommitmentsVM.InitListOfCommitments();
 
             Main.Content = new MainView();
             Consumo consumo = new Consumo();
@@ -61,7 +62,7 @@ namespace WalletWPF
 
         private void Commitment_Click(object sender, RoutedEventArgs e)
         {
-            Main.Content = new Commitment();
+            Main.Content = new Commitments();
         }
 
         private void Payments_Click(object sender, RoutedEventArgs e)
