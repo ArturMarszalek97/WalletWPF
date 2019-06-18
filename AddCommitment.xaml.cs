@@ -20,9 +20,25 @@ namespace WalletWPF
     /// </summary>
     public partial class AddCommitment : Window
     {
-        public AddCommitment()
+        private Commitment commitment = null;
+        private bool editStatus = false;
+        public AddCommitment(Commitment commitment)
         {
             InitializeComponent();
+            if(commitment != null)
+            {
+                editStatus = true;
+                this.commitment = commitment;
+                InitCommitmentToEdit();
+            }
+        }
+
+        private void InitCommitmentToEdit()
+        {
+            nameOfCommitment.Text = commitment.name;
+            installmentOfCommitment.Text = commitment.amount.ToString();
+            numberOfInstallment.Text = commitment.number_of_installments.ToString();
+            dateOfCommitment.SelectedDate = commitment.date;
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
@@ -33,6 +49,11 @@ namespace WalletWPF
 
         private void OkButton_Click(object sender, RoutedEventArgs e)
         {
+            if(editStatus == true)
+            {
+                CommitmentsVM.DeleteCommitment(this.commitment);
+            }
+
             Commitment commitment = new Commitment
             {
                 name = nameOfCommitment.Text,

@@ -25,6 +25,7 @@ namespace WalletWPF
         {
             InitializeComponent();
             InitListOfCommitments();
+            DoubleClickHandler();
         }
 
         private void InitListOfCommitments()
@@ -34,18 +35,33 @@ namespace WalletWPF
 
         private void AddObligation(object sender, RoutedEventArgs e)
         {
-            AddCommitment addCommitment = new AddCommitment();
+            AddCommitment addCommitment = new AddCommitment(null);
             addCommitment.Show();
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-            var result = MessageBox.Show("Czy na pewno chcesz usunąć to zlecenie stałe?", "Usuń zlecenie stałe", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            var result = MessageBox.Show("Czy na pewno chcesz usunąć to zobowiązanie?", "Usuń zobowiązanie", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
             if (result == MessageBoxResult.Yes)
             {
                 CommitmentsVM.DeleteCommitment(listOfCommitments.SelectedIndex);
             }
+        }
+
+        private void DoubleClickHandler()
+        {
+            Style rowStyle = new Style(typeof(DataGridRow));
+            rowStyle.Setters.Add(new EventSetter(DataGridRow.MouseDoubleClickEvent,
+                                     new MouseButtonEventHandler(Row_DoubleClick)));
+            listOfCommitments.RowStyle = rowStyle;
+        }
+
+        private void Row_DoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var row = (Commitment)listOfCommitments.SelectedItem;
+            AddCommitment addCommitment = new AddCommitment(row);
+            addCommitment.Show();
         }
     }
 }
