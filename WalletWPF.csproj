@@ -120,6 +120,7 @@
       <DependentUpon>Currency.xaml</DependentUpon>
     </Compile>
     <Compile Include="DBModels\Enums\Periods.cs" />
+    <Compile Include="Helpers\AccountHelper.cs" />
     <Compile Include="Helpers\DBHelper.cs" />
     <Compile Include="Helpers\InvokeHelper.cs" />
     <Compile Include="Language.cs">

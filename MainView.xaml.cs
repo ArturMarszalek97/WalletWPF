@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WalletWPF.Helpers;
 
 namespace WalletWPF
 {
@@ -23,9 +24,17 @@ namespace WalletWPF
         public MainView()
         {
             InitializeComponent();
+            InitComponents();
 
             Consumo consumo = new Consumo();
             DataContext = new ConsumoViewModel(consumo);
+        }
+
+        private void InitComponents()
+        {
+            balance_of_credit_card.Text = AccountHelper.balance_of_credit_card.ToString();
+            account_balance.Text = AccountHelper.account_balance.ToString();
+            number_of_transaction.Text = AccountHelper.number_of_transaction.ToString();
         }
 
         internal class ConsumoViewModel
