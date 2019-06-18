@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WalletWPF.ViewModels;
 
 namespace WalletWPF
 {
@@ -23,32 +24,45 @@ namespace WalletWPF
         public Raports()
         {
             InitializeComponent();
+            InitListOfMethodsPayment();
+            DoubleClickHandler();
 
-            Raportss raportss = new Raportss("test");
-            List<Raportss> raportsses = new List<Raportss>();
-
-            raportsses.Add(raportss);
-            bloki.ItemsSource = raportsses;
-            //bloki.DataContext = new RaportsViewModel(raportss);
         }
 
-        internal class Raportss
+        private void InitListOfMethodsPayment()
         {
-            public string name { get; set; }
-            public int count { get; set; }
+            listOfPaymentMethods.ItemsSource = PaymentMethodVM.GetListOfPaymentMethod();
+        }
 
-            public Raportss(string name)
-            {
-                this.name = name;
-                count = rnd();
-            }
+        private void AddButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddPaymentMethod addPaymentMethod = new AddPaymentMethod(null);
+            addPaymentMethod.Show();
+        }
 
-            private int rnd()
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            var result = MessageBox.Show("Czy na pewno chcesz ten środek płatności?", "Usuń środek płatności", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (result == MessageBoxResult.Yes)
             {
-                Random random = new Random();
-                return random.Next(0, 100);
+                PaymentMethodVM.DeletePaymentMethod(listOfPaymentMethods.SelectedIndex);
             }
         }
 
+        private void DoubleClickHandler()
+        {
+            Style rowStyle = new Style(typeof(DataGridRow));
+            rowStyle.Setters.Add(new EventSetter(DataGridRow.MouseDoubleClickEvent,
+                                     new MouseButtonEventHandler(Row_DoubleClick)));
+            listOfPaymentMethods.RowStyle = rowStyle;
+        }
+
+        private void Row_DoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var row = (PaymentMethod)listOfPaymentMethods.SelectedItem;
+            AddPaymentMethod addPaymentMethod = new AddPaymentMethod(row);
+            addPaymentMethod.Show();
+        }
     }
 }

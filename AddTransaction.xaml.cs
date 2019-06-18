@@ -65,10 +65,8 @@ namespace WalletWPF
         public List<PaymentMethod> PaymentMethods { get; set; }
         private void ListPaymentMethod()
         {
-            PaymentMethodVM.InitList();
             PaymentMethod newpaymentMethod = new PaymentMethod
             {
-                
                 name = "karta debetowa",
             };
             PaymentMethodVM.AddNewPaymentMethod(newpaymentMethod);

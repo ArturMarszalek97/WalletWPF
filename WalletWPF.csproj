@@ -98,6 +98,9 @@
     <Compile Include="AddOrder.xaml.cs">
       <DependentUpon>AddOrder.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddPaymentMethod.xaml.cs">
+      <DependentUpon>AddPaymentMethod.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddTransaction.xaml.cs">
       <DependentUpon>AddTransaction.xaml</DependentUpon>
     </Compile>
@@ -186,6 +189,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddOrder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddPaymentMethod.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

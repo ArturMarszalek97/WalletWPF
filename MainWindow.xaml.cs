@@ -28,6 +28,7 @@ namespace WalletWPF
             //DBHelper.EstablishConnection();
             CategoryVM.InitList();
             CommitmentsVM.InitListOfCommitments();
+            PaymentMethodVM.InitList();
 
             Main.Content = new MainView();
             Consumo consumo = new Consumo();

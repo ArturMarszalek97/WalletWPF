@@ -94,15 +94,34 @@
         </Grid>
 
         <Grid Grid.ColumnSpan="3" Grid.Row="1">
-            <MetroChart:StackedColumn100Chart >
-                <MetroChart:StackedColumn100Chart.Series>
-                    <MetroChart:ChartSeries DisplayMember="name"
-                                            Name="bloki" 
-                                            ItemsSource="{Binding count}"
-                                            SeriesTitle="{Binding name}"
-                                            ValueMember="Count" />
-                </MetroChart:StackedColumn100Chart.Series>
-            </MetroChart:StackedColumn100Chart>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0"/>
+                <RowDefinition Height="300"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <GroupBox HorizontalAlignment="Center" Header="Twoje zestawienie" FontWeight="Bold" VerticalAlignment="Center" Height="350" Margin="0, 0, -10, 30" Width="700" Grid.RowSpan="3">
+                <Grid Margin="0,0,13,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="5,5,10,5">
+                        <StackPanel Width="662">
+                            <StackPanel Orientation="Horizontal" Margin="5,5,5,5" Width="666">
+                                <DataGrid Name="listOfPaymentMethods" IsReadOnly="True" SelectionMode="Single" VerticalAlignment="Top" AutoGenerateColumns="False" Margin="5,5,5,5" Width="645">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="dostępne środki płatności" Binding="{Binding Path=name}"></DataGridTextColumn>
+                                        <DataGridTextColumn Header="dostępne saldo" Binding="{Binding Path=balance}"></DataGridTextColumn>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </StackPanel>
+                        </StackPanel>
+                    </ScrollViewer>
+
+                    <Button Name="deleteButton" Grid.Row="1" Content="-" HorizontalAlignment="Right" MinWidth="30" Click="DeleteButton_Click"></Button>
+                    <Button Name="addButton" Grid.Row="1" Content="+" Margin="15" Focusable="False" HorizontalAlignment="Left" MinWidth="30" Click="AddButton_Click"/>
+                </Grid>
+            </GroupBox>
         </Grid>
     </Grid>
 </Page>
