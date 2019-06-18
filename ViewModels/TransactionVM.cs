@@ -18,7 +18,16 @@ namespace WalletWPF.ViewModels
 
         public static ObservableCollection<Transaction> GetTransactions()
         {
+            if(list_of_transactions.Count == 0)
+            {
+                return null;
+            }
             return list_of_transactions;
+        }
+
+        public static void DeleteTransaction(int id)
+        {
+            list_of_transactions.RemoveAt(id);
         }
     }
 }

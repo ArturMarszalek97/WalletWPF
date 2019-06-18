@@ -24,6 +24,7 @@ namespace WalletWPF
         public Transactions()
         {
             InitializeComponent();
+            DoubleClickHandler();
             listOfTransaction.ItemsSource = TransactionVM.GetTransactions();
         }
 
@@ -31,6 +32,30 @@ namespace WalletWPF
         {
             AddTransaction addTransaction = new AddTransaction();
             addTransaction.Show();
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            var result = MessageBox.Show("Czy na pewno chcesz usunąć tę transakcję?", "Usuń transakcję", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if(result == MessageBoxResult.Yes)
+            {
+                TransactionVM.DeleteTransaction(listOfTransaction.SelectedIndex);
+            }
+        }
+
+        private void DoubleClickHandler()
+        {
+            Style rowStyle = new Style(typeof(DataGridRow));
+            rowStyle.Setters.Add(new EventSetter(DataGridRow.MouseDoubleClickEvent,
+                                     new MouseButtonEventHandler(Row_DoubleClick)));
+            listOfTransaction.RowStyle = rowStyle;
+        }
+
+        private void Row_DoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            DataGridRow row = sender as DataGridRow;
+            MessageBox.Show("dzoa;");
         }
     }
 }

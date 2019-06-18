@@ -76,6 +76,8 @@ namespace WalletWPF
 
             TransactionVM.AddNewTransaction(transaction);
 
+
+
             this.Close();
         }
 
