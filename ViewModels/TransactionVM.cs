@@ -29,5 +29,10 @@ namespace WalletWPF.ViewModels
         {
             list_of_transactions.RemoveAt(id);
         }
+
+        internal static void DeleteTransaction(Transaction transaction)
+        {
+            list_of_transactions.Remove(transaction);
+        }
     }
 }

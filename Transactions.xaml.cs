@@ -30,7 +30,7 @@ namespace WalletWPF
 
         private void addtransactions(object sender, RoutedEventArgs e)
         {
-            AddTransaction addTransaction = new AddTransaction();
+            AddTransaction addTransaction = new AddTransaction(null);
             addTransaction.Show();
         }
 
@@ -54,8 +54,9 @@ namespace WalletWPF
 
         private void Row_DoubleClick(object sender, MouseButtonEventArgs e)
         {
-            DataGridRow row = sender as DataGridRow;
-            MessageBox.Show("dzoa;");
+            var row = (Transaction)listOfTransaction.SelectedItem;
+            AddTransaction addTransaction = new AddTransaction(row);
+            addTransaction.Show();
         }
     }
 }

@@ -159,6 +159,7 @@
       <DependentUpon>Transactions.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\CategoryVM.cs" />
+    <Compile Include="ViewModels\PaymentMethodVM.cs" />
     <Compile Include="ViewModels\SubcategoryVM.cs" />
     <Compile Include="ViewModels\TransactionVM.cs" />
     <Compile Include="WalletModel.Context.cs">

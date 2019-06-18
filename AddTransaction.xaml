@@ -45,7 +45,9 @@
         <TextBlock Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" Margin="10" Text="Data"/>
         <DatePicker Name="dateOfTransaction" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" Margin="10"/>
         <TextBlock Grid.Row="6" Grid.Column="0" VerticalAlignment="Center" Margin="10" Text="Forma płatności"/>
-        <ComboBox ItemsSource="{Binding}" SelectedValuePath="id_payment_method" DisplayMemberPath="name" Name="paymentMethod" Grid.Row="6" Grid.Column="1" Margin="10" SelectionChanged="ComboBox_SelectionChanged">
+        <ComboBox SelectedValuePath="id_payment_method" DisplayMemberPath="name" Name="paymentMethod" Grid.Row="6" Grid.Column="1" Margin="10" >
+            <ComboBoxItem>Karta debetowa</ComboBoxItem>
+            <ComboBoxItem>Karta kredytowa</ComboBoxItem>
         </ComboBox>
         <Button Name="okButton" Grid.Row="7" Grid.Column="0" Width="70" HorizontalAlignment="Right" Margin="10" Click="OkButton_Click">OK</Button>
         <Button Grid.Row="7" Grid.Column="1" Width="80" HorizontalAlignment="Right" Margin="10">Anuluj</Button>
