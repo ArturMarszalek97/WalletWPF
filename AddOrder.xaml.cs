@@ -21,11 +21,28 @@ namespace WalletWPF
     /// </summary>
     public partial class AddOrder : Window
     {
-        public AddOrder()
+        private bool editStatus = false;
+        private ConstOrder constOrder = null;
+        public AddOrder(ConstOrder constOrder)
         {
             InitializeComponent();
+            this.constOrder = constOrder;
             InitCategoryComboBox();
             InitPeriodsToComboBox();
+            if(constOrder != null)
+            {
+                editStatus = true;
+                InitConstOrderToEdit(constOrder);
+            }
+        }
+
+        private void InitConstOrderToEdit(ConstOrder constOrder)
+        {
+            nameOfConstOrder.Text = constOrder.name;
+            amountOfConstOrder.Text = constOrder.amount.ToString();
+            categoriesOfConstOrder.SelectedItem = constOrder.category;
+            subcategoriesOfConstOrder.SelectedItem = constOrder.subcategory;
+            periodicityOfConstOrder.SelectedItem = constOrder.period;
         }
 
         private void InitCategoryComboBox()
@@ -48,6 +65,11 @@ namespace WalletWPF
 
         private void OkButton_Click(object sender, RoutedEventArgs e)
         {
+            if(editStatus == true)
+            {
+                ConstOrderVM.DeleteConstOrder(this.constOrder);
+            }
+
             ConstOrder constOrder = new ConstOrder();
             constOrder.name = nameOfConstOrder.Text;
             constOrder.amount = Convert.ToDouble(amountOfConstOrder.Text);

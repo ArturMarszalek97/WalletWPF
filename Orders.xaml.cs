@@ -25,6 +25,7 @@ namespace WalletWPF
         {
             InitializeComponent();
             InitListOfConstOrders();
+            DoubleClickHandler();
         }
 
         private void InitListOfConstOrders()
@@ -34,7 +35,7 @@ namespace WalletWPF
 
         private void AddConstOrder(object sender, RoutedEventArgs e)
         {
-            AddOrder addOrder = new AddOrder();
+            AddOrder addOrder = new AddOrder(null);
             addOrder.Show();
         }
 
@@ -46,6 +47,21 @@ namespace WalletWPF
             {
                 ConstOrderVM.DeleteConstOrder(listOfConstOrders.SelectedIndex);
             }
+        }
+
+        private void DoubleClickHandler()
+        {
+            Style rowStyle = new Style(typeof(DataGridRow));
+            rowStyle.Setters.Add(new EventSetter(DataGridRow.MouseDoubleClickEvent,
+                                     new MouseButtonEventHandler(Row_DoubleClick)));
+            listOfConstOrders.RowStyle = rowStyle;
+        }
+
+        private void Row_DoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var row = (ConstOrder)listOfConstOrders.SelectedItem;
+            AddOrder addConstOrder = new AddOrder(row);
+            addConstOrder.Show();
         }
     }
 }
