@@ -37,5 +37,15 @@ namespace WalletWPF
             AddCommitment addCommitment = new AddCommitment();
             addCommitment.Show();
         }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            var result = MessageBox.Show("Czy na pewno chcesz usunąć to zlecenie stałe?", "Usuń zlecenie stałe", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                CommitmentsVM.DeleteCommitment(listOfCommitments.SelectedIndex);
+            }
+        }
     }
 }

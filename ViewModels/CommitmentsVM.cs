@@ -25,5 +25,10 @@ namespace WalletWPF.ViewModels
         {
             return list_of_commitments;
         }
+
+        internal static void DeleteCommitment(int id)
+        {
+            list_of_commitments.RemoveAt(id);
+        }
     }
 }
