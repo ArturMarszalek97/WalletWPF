@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WalletWPF.ViewModels;
 
 namespace WalletWPF
 {
@@ -23,6 +24,7 @@ namespace WalletWPF
         public Transactions()
         {
             InitializeComponent();
+            listOfTransaction.ItemsSource = TransactionVM.GetTransactions();
         }
 
         private void addtransactions(object sender, RoutedEventArgs e)

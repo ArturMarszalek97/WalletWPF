@@ -16,6 +16,9 @@ namespace WalletWPF
     {
         public int Id_transaction { get; set; }
         public string name { get; set; }
+        public string category { get; set; }
+        public string subcategory { get; set; }
+        public string paymentMethod { get; set; }
         public Nullable<double> amount { get; set; }
         public Nullable<System.DateTime> date_transaction { get; set; }
         public Nullable<int> id_payment_method { get; set; }

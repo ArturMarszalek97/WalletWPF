@@ -6,9 +6,13 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:WalletWPF"
         mc:Ignorable="d"
-        Title="AddTransaction" Height="350" Width="450">
+        Title="AddTransaction" Height="500" Width="450">
     <Grid Margin="10" >
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -21,20 +25,29 @@
             <ColumnDefinition Width="30"/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="10" Text="Notatka"/>
-        <TextBox Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Margin="10"/>
-        <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="10" Text="Kategoria"/>
-        <ComboBox Grid.Row="1" Grid.Column="1" Margin="10">
-            <ComboBoxItem></ComboBoxItem>
-            <ComboBoxItem></ComboBoxItem>
-            <ComboBoxItem></ComboBoxItem>
+        <TextBlock Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="10" Text="Nazwa transakcji"/>
+        <TextBox Name="nameOfTransaction" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Margin="10"/>
+
+        <TextBlock Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10">Rodzaj transakcji</TextBlock>
+        <RadioButton Name="expenditure" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Center" IsChecked="True">wydatek</RadioButton>
+        <RadioButton Name="income" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Margin="10" VerticalAlignment="Center">przychód</RadioButton>
+
+        <TextBlock Grid.Row="2" HorizontalAlignment="Center" Margin="10" VerticalAlignment="Center">Kwota transakcji</TextBlock>
+        <TextBox Name="amountOfTransaction" Grid.Row="2" Grid.Column="1" Margin="10"></TextBox>
+        
+        <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="10" Text="Kategoria"/>
+        <ComboBox Name="CategoriesComboBox" Grid.Row="3" Grid.Column="1" Margin="10" SelectionChanged="CategoriesComboBox_SelectionChanged">
         </ComboBox>
-        <TextBlock Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="10" Text="Data"/>
-        <DatePicker Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Margin="10"/>
-        <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="10" Text="Forma płatności"/>
-        <ComboBox ItemsSource="{Binding}" SelectedValuePath="id_payment_method" DisplayMemberPath="name" x:Name="combobox1" Grid.Row="3" Grid.Column="1" Margin="10" SelectionChanged="ComboBox_SelectionChanged">
+
+        <TextBlock Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Margin="10" Text="Podkategoria"/>
+        <ComboBox Name="subCategoriesComboBox" Grid.Row="4" Grid.Column="1" Margin="10" IsEnabled="False">
         </ComboBox>
-        <Button Grid.Row="5" Grid.Column="0" Width="70" HorizontalAlignment="Right" Margin="10">OK</Button>
-        <Button Grid.Row="5" Grid.Column="1" Width="80" HorizontalAlignment="Right" Margin="10">Anuluj</Button>
+        <TextBlock Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" Margin="10" Text="Data"/>
+        <DatePicker Name="dateOfTransaction" Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" Margin="10"/>
+        <TextBlock Grid.Row="6" Grid.Column="0" VerticalAlignment="Center" Margin="10" Text="Forma płatności"/>
+        <ComboBox ItemsSource="{Binding}" SelectedValuePath="id_payment_method" DisplayMemberPath="name" Name="paymentMethod" Grid.Row="6" Grid.Column="1" Margin="10" SelectionChanged="ComboBox_SelectionChanged">
+        </ComboBox>
+        <Button Name="okButton" Grid.Row="7" Grid.Column="0" Width="70" HorizontalAlignment="Right" Margin="10" Click="OkButton_Click">OK</Button>
+        <Button Grid.Row="7" Grid.Column="1" Width="80" HorizontalAlignment="Right" Margin="10">Anuluj</Button>
     </Grid>
 </Window>

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WalletWPF.Helpers;
+using WalletWPF.ViewModels;
 
 namespace WalletWPF
 {
@@ -25,10 +26,12 @@ namespace WalletWPF
         {
             InitializeComponent();
             //DBHelper.EstablishConnection();
+            CategoryVM.InitList();
 
             Main.Content = new MainView();
             Consumo consumo = new Consumo();
             DataContext = new ConsumoViewModel(consumo);
+           
         }
 
         private void ButtonFechar_Click(object sender, RoutedEventArgs e)

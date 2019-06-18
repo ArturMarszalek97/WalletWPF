@@ -73,6 +73,7 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -101,16 +102,16 @@
       <DependentUpon>AddTransaction.xaml</DependentUpon>
     </Compile>
     <Compile Include="Category.cs">
-      <DependentUpon>WalletModel.tt</DependentUpon>
+      <DependentUpon>WalletModell.tt</DependentUpon>
     </Compile>
     <Compile Include="Commitment.cs">
-      <DependentUpon>WalletModel.tt</DependentUpon>
+      <DependentUpon>WalletModell.tt</DependentUpon>
     </Compile>
     <Compile Include="Commitment.xaml.cs">
       <DependentUpon>Commitment.xaml</DependentUpon>
     </Compile>
     <Compile Include="ConstOrder.cs">
-      <DependentUpon>WalletModel.tt</DependentUpon>
+      <DependentUpon>WalletModell.tt</DependentUpon>
     </Compile>
     <Compile Include="Currency.xaml.cs">
       <DependentUpon>Currency.xaml</DependentUpon>
@@ -125,8 +126,9 @@
     <Compile Include="DBModels\PermanentOrder.cs" />
     <Compile Include="DBModels\Subcategory.cs" />
     <Compile Include="Helpers\DBHelper.cs" />
+    <Compile Include="Helpers\InvokeHelper.cs" />
     <Compile Include="Language.cs">
-      <DependentUpon>WalletModel.tt</DependentUpon>
+      <DependentUpon>WalletModell.tt</DependentUpon>
     </Compile>
     <Compile Include="MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
@@ -135,7 +137,7 @@
       <DependentUpon>Orders.xaml</DependentUpon>
     </Compile>
     <Compile Include="PaymentMethod.cs">
-      <DependentUpon>WalletModel.tt</DependentUpon>
+      <DependentUpon>WalletModell.tt</DependentUpon>
     </Compile>
     <Compile Include="Payments.xaml.cs">
       <DependentUpon>Payments.xaml</DependentUpon>
@@ -143,47 +145,46 @@
     <Compile Include="Raports.xaml.cs">
       <DependentUpon>Raports.xaml</DependentUpon>
     </Compile>
-    <Compile Include="sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>WalletModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sp_helpdiagrams_Result.cs">
-      <DependentUpon>WalletModel.tt</DependentUpon>
-    </Compile>
+    <Compile Include="sp_helpdiagramdefinition_Result.cs" />
     <Compile Include="Subcategory.cs">
-      <DependentUpon>WalletModel.tt</DependentUpon>
+      <DependentUpon>WalletModell.tt</DependentUpon>
     </Compile>
     <Compile Include="sysdiagrams.cs">
-      <DependentUpon>WalletModel.tt</DependentUpon>
+      <DependentUpon>WalletModell.tt</DependentUpon>
     </Compile>
     <Compile Include="Transaction.cs">
-      <DependentUpon>WalletModel.tt</DependentUpon>
+      <DependentUpon>WalletModell.tt</DependentUpon>
     </Compile>
     <Compile Include="Transactions.xaml.cs">
       <DependentUpon>Transactions.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\AccountVM.cs" />
-    <Compile Include="ViewModels\DebtVM.cs" />
-    <Compile Include="ViewModels\ExpenditureVM.cs" />
-    <Compile Include="ViewModels\IncomeVM.cs" />
-    <Compile Include="ViewModels\LanguageVM.cs" />
-    <Compile Include="ViewModels\LoanVM.cs" />
-    <Compile Include="ViewModels\ParentCategoryVM.cs" />
-    <Compile Include="ViewModels\PermanentOrderVM.cs" />
+    <Compile Include="ViewModels\CategoryVM.cs" />
     <Compile Include="ViewModels\SubcategoryVM.cs" />
+    <Compile Include="ViewModels\TransactionVM.cs" />
     <Compile Include="WalletModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>WalletModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="WalletModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>WalletModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="WalletModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>WalletModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="WalletModell.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WalletModell.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WalletModell.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WalletModell.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WalletModell.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WalletModell.edmx</DependentUpon>
     </Compile>
     <Page Include="AddCommitment.xaml">
       <SubType>Designer</SubType>
@@ -268,6 +269,13 @@
     <None Include="WalletModel.edmx.diagram">
       <DependentUpon>WalletModel.edmx</DependentUpon>
     </None>
+    <EntityDeploy Include="WalletModell.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>WalletModell.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="WalletModell.edmx.diagram">
+      <DependentUpon>WalletModell.edmx</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -284,10 +292,21 @@
       <DependentUpon>WalletModel.edmx</DependentUpon>
       <LastGenOutput>WalletModel.Context.cs</LastGenOutput>
     </Content>
+    <Content Include="WalletModel.edmx.sql" />
     <Content Include="WalletModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>WalletModel.edmx</DependentUpon>
       <LastGenOutput>WalletModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="WalletModell.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>WalletModell.edmx</DependentUpon>
+      <LastGenOutput>WalletModell.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="WalletModell.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>WalletModell.edmx</DependentUpon>
+      <LastGenOutput>WalletModell.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

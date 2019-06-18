@@ -121,14 +121,14 @@
                     <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="5,5,10,5">
                         <StackPanel Width="780">
                             <StackPanel Orientation="Horizontal" Margin="5,5,5,5" Width="780">
-                                <DataGrid ItemsSource="{Binding Transactions}" SelectedItem="{Binding SelectedTransaction}" SelectionMode="Single" SelectedIndex="{Binding SelectedIndex}" VerticalAlignment="Top" AutoGenerateColumns="False" Margin="5,5,5,5" Width="770">
+                                <DataGrid Name="listOfTransaction" ItemsSource="{Binding list_of_transactions}" SelectionMode="Single" VerticalAlignment="Top" AutoGenerateColumns="False" Margin="5,5,5,5" Width="770">
                                     <DataGrid.Columns>
-                                        <DataGridTextColumn Header="nazwa transakcji" Binding="{Binding Path=Note}" ></DataGridTextColumn>
-                                        <DataGridTextColumn Header="cena" Binding="{Binding Path=Category}" ></DataGridTextColumn>
-                                        <DataGridTextColumn Header="kategoria" Binding="{Binding Path=Category}" ></DataGridTextColumn>
-                                        <DataGridTextColumn Header="podkategoria" Binding="{Binding Path=Category}" ></DataGridTextColumn>
-                                        <DataGridTextColumn Header="forma płatności" Binding="{Binding Path=PaymentMethod}" ></DataGridTextColumn>
-                                        <DataGridTextColumn Header="data" Binding="{Binding Path=Date}" ></DataGridTextColumn>
+                                        <DataGridTextColumn Header="nazwa transakcji" Binding="{Binding Path=name}" ></DataGridTextColumn>
+                                        <DataGridTextColumn Header="cena" Binding="{Binding Path=amount}" ></DataGridTextColumn>
+                                        <DataGridTextColumn Header="kategoria" Binding="{Binding Path=category}" ></DataGridTextColumn>
+                                        <DataGridTextColumn Header="podkategoria" Binding="{Binding Path=subcategory}" ></DataGridTextColumn>
+                                        <DataGridTextColumn Header="forma płatności" Binding="{Binding Path=PaymentMethod.name}" ></DataGridTextColumn>
+                                        <DataGridTextColumn Header="data" Binding="{Binding Path=date_transaction}" ></DataGridTextColumn>
                                     </DataGrid.Columns>
                                 </DataGrid>
                             </StackPanel>

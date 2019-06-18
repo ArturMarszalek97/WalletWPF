@@ -139,4 +139,8 @@ namespace WalletWPF
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
     }
+
+    public class sp_helpdiagrams_Result
+    {
+    }
 }
