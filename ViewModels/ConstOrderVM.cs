@@ -25,5 +25,10 @@ namespace WalletWPF.ViewModels
         {
             return list_of_constOrders;
         }
+
+        public static void DeleteConstOrder(int id)
+        {
+            list_of_constOrders.RemoveAt(id);
+        }
     }
 }

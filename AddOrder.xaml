@@ -36,6 +36,6 @@
         <ComboBox Name="periodicityOfConstOrder" Grid.Row="4" Grid.Column="1" Margin="10">
         </ComboBox>
         <Button Name="okButton" Grid.Row="5" Grid.Column="0" Width="70" HorizontalAlignment="Center" Margin="20" Click="OkButton_Click">OK</Button>
-        <Button Grid.Row="5" Grid.Column="1" Width="80" HorizontalAlignment="Center" Margin="10">Anuluj</Button>
+        <Button Name="cancelButton" Grid.Row="5" Grid.Column="1" Width="80" HorizontalAlignment="Center" Margin="10" Click="CancelButton_Click">Anuluj</Button>
     </Grid>
 </Window>
